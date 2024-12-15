@@ -1,0 +1,30 @@
+.page-banner h1 {
+  font-size: 35px;
+}
+
+/* CSS for adjusting the image and table layout */
+.page-banner.contact-page .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.page-banner.contact-page .col-lg-5 {
+  order: 1;
+}
+
+.page-banner.contact-page .col-lg-7 {
+  order: 2;
+}
+
+.page-banner.contact-page .col-lg-7 p {
+  margin-top: 0;
+}
+
+.conference-img {
+  height: 27%;
+}
+
+.cpd-text {
+  margin-top: 5%;
+  text-align: justify;
+}

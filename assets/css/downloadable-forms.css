@@ -1,0 +1,88 @@
+
+a:link {
+  text-decoration: none;
+}
+h2 {
+  color: #00703c;
+  font-size: 2rem;
+  margin: 0;
+}
+.vn-green a {
+  background-color: #27ae60;
+  display: inline-block;
+  position: relative;
+  margin: 30px 5px;
+  padding: 20px 20px 20px 80px;
+  color: #fff;
+  transition: all 0.4s ease;
+  border-radius: 3px;
+}
+.vn-green a:before {
+  content: "\f019";
+  font-family: fontAwesome;
+  position: absolute;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 22px;
+  border-radius: 0 20px 0 0;
+  color: #000;
+  background-color: #fff;
+  opacity: 0.3;
+  padding: 20px;
+  top: 0;
+  left: 0;
+}
+.vn-green a:hover {
+  background: #7f8c8d;
+}
+
+.btn-wrap {
+  padding: 0;
+  width: 25%;
+}
+
+.section-sp2 {
+  padding-top: 25px;
+}
+
+.button {
+  display: none;
+  padding: 8px 12px;
+  margin: 5px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#pagination {
+  margin-top: 20px;
+}
+
+.current-page {
+  background-color: #4caf50;
+  color: white;
+}
+.button {
+  display: none;
+  padding: 8px 12px;
+  margin: 5px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#paginationContainer {
+  margin-top: 20px;
+}
+
+#pagination .button {
+  display: inline-block;
+}
+
+.current-page {
+  background-color: #4caf50;
+  color: white;
+}

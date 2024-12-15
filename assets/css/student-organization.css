@@ -1,0 +1,28 @@
+.activity-img {
+    margin-right: 50px;
+    width: 5px !important;
+  }
+  
+.activity-img-wrapper{
+    margin-right: 50px ;
+}
+
+.card-text{
+    text-align: justify;
+    
+}
+
+.extra-text{
+        display: flex;
+        border-top: 1px solid #EEEEEE;
+        padding-top: 20px;
+        margin-top: 20px;
+    
+}
+.carousel-text {
+
+    text-align: center;
+    color: black; 
+    margin-top:5px;
+}
+
