@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Horizontal Card List with Image on Left</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add Bootstrap JS and jQuery scripts here (if needed) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    /* Custom CSS to adjust the card layout */
+    .container.mt-5 {
+	  margin-left: 10px !important;
+	  margin-right: 10px !important;
+	  margin-top: 20px !important;
+    }
+	.card-horizontal {
+	  align-items: center;
+      display: flex;
+      flex-direction: row;
+    }
+    .card-horizontal .img-fluid {
+      width: 100px;
+      height: 100px;
+    }
+	h5 { font-size: 17px; }
+	p { font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card card-horizontal">
+          <img src="assets/images/org_faculty/0.jpg" class="card-img-top img-fluid" alt="Card Image 1">
+          <div class="card-body">
+            <h5 class="card-title">Prof. Dr. Argel Banda</h5>
+            <p class="card-text">Department Chair</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card card-horizontal">
+          <img src="assets/images/org_faculty/1.jpg" class="card-img-top img-fluid" alt="Card Image 2">
+          <div class="card-body">
+            <h5 class="card-title">Engr. Armie Pakzad</h5>
+            <p class="card-text">CPE Coordinator</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card card-horizontal">
+          <img src="assets/images/org_faculty/2.jpg" class="card-img-top img-fluid" alt="Card Image 3">
+          <div class="card-body" height="100%">
+            <h5 class="card-title">Engr. Ana Antoniette Illahi</h5>
+            <p class="card-text">Vice Chair</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card card-horizontal">
+          <img src="assets/images/org_faculty/3.jpg" class="card-img-top img-fluid" alt="Card Image 1">
+          <div class="card-body">
+            <h5 class="card-title">Ms. Ma. Rowena Alo</h5>
+            <p class="card-text">Department Secretary</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

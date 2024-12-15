@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 4 Vertical Tabs</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add Bootstrap JS and jQuery scripts here (if needed) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+	.search-container {
+	    display: flex;
+		flex-wrap: wrap;
+    }
+	img {
+		height: 50px;
+		width: 50px;
+		margin-right: 10px;
+	}
+	.container.mt-5 {
+		height: 510px;
+		margin-top: 20px !important;
+		flex-direction: column;
+		overflow-y: auto;
+    }
+	.col-md-3 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+	.col-md-9 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+    .nav-tabs {
+	  border: 1px solid black;
+      flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+    }
+	.nav-tabs.flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .nav-tabs .nav-item {
+      width: 100%;
+      text-align: left;
+    }
+    .nav-tabs .nav-link {
+      border-radius: 0;
+    }
+    .tab-content {
+	  border: 1px solid black;
+	  flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+      padding-left: 20px;
+    }
+  </style>
+  <script>
+	function search() {
+	  // Remove all children
+	  const containerDiv = document.getElementById("myTab");
+	  const sort = document.getElementById("sort").value;
+	  while (containerDiv.firstChild) {
+		containerDiv.removeChild(containerDiv.firstChild);
+	  }
+	  // Create tab
+	  if (sort == "normal"){
+		for (var i = 1; i <= 45; i++) {
+		  createTab(i);
+		}
+	  } else if (sort == "reverse"){
+		for (var i = 45; i >= 1; i--) {
+		  createTab(i);
+		}
+	  }
+	}
+	// Event function once HTML is loaded
+	  document.addEventListener("DOMContentLoaded", function() { search(); });
+	function createTab(index) {
+	  const keyword = document.getElementById("keyword").value;
+	  const mode = document.getElementById("mode").value;
+	  const faculty = document.getElementById("faculty" + index.toString()).innerText.toString();
+	  const content = document.getElementById("content" + index.toString()).innerText.toString();
+	  if (keyword == "" || (mode == "faculty" && faculty.toLowerCase().includes(keyword.toLowerCase()))
+			|| (mode == "content" && content.toLowerCase().includes(keyword.toLowerCase()))) {
+				  // Set parent and child parameters
+				  const ulElement = document.getElementById("myTab");
+				  
+				  const liElement = document.createElement("li");
+				  liElement.classList.add("nav-item");
+				  const anchorElement = document.createElement("a");
+				  anchorElement.classList.add("nav-link");
+				  anchorElement.id = "tab"+index.toString()+"-tab";
+				  anchorElement.setAttribute("data-toggle", "tab");
+				  anchorElement.href = "#tab"+index.toString();
+				  anchorElement.role = "tab";
+				  anchorElement.setAttribute("aria-controls", "tab"+index.toString());
+				  anchorElement.setAttribute("aria-selected", "false");
+				  
+				  const imgElement = document.createElement("img");
+				  imgElement.src = "assets/images/faculty/" + (index - 1) + ".jpg";
+				  //const textNode = document.createTextNode("Tab "+index.toString());
+				  const textNode = document.createTextNode(document.getElementById("faculty" + index.toString()).innerText.toString());
+				  
+				  // Settle parents and their children
+				  anchorElement.appendChild(imgElement);
+				  anchorElement.appendChild(textNode);
+				  liElement.appendChild(anchorElement);
+				  ulElement.appendChild(liElement);
+	  }
+	}
+  </script>
+</head>
+<body>
+  <div class="container mt-5" style="border: 1px solid black;">
+    <div class="row">
+	  <div class="search-container">
+		<p style="text-indent:10px; margin-top:10px;">
+			SEARCH: (a) Keyword: <INPUT id="keyword" NAME = "name" TYPE = "text">
+			(b) Mode: <select id="mode" name="mode">
+			  <option value="faculty">Faculty Name</option>
+			  <option value="content">Content</option>
+			</select>
+			(c) Sort: <select id="sort" name="sort">
+			  <option value="normal">Normal</option>
+			  <option value="reverse">Reverse</option>
+			</select>
+			<input type="button" value="Search" onclick="search()">
+		</p>
+	  </div>
+	  <p style="margin-right:1000px; margin-bottom: -70px;"></p>
+	<!-- Vertical Tabs -->
+      <div class="col-md-3">
+        <ul class="nav nav-tabs flex-nowrap" id="myTab" role="tablist">
+        </ul>
+      </div>
+	  <!-- Tab Content -->
+      <div class="col-md-9">
+        <div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+				<br><h4 id="faculty1">ABAD, ALEXANDER C.</h4>
+				<p id="content1">Alexander C. Abad is a graduate of BS Electronics and Communications Engineering at St. Louis University- Baguio City. He finished his MS in Electronics and Communications Engineering at De La Salle University - Manila and currently taking up his PhD in ECE at DLSU. His field of interest includes robotics, machine intelligence, machine vision, mixed-signal electronics and IC design.</p>
+			</div>
+			<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+				<br><h4 id="faculty2">ABUAN, DONABEL D.</h4>
+				<p id="content2">I'm Donabel de Veas- Abuan, married to Hubert Abuan from the Gokongwei College of Engineering, Electronics and Communications Department. Currently Assistant Professor 1. I started my teaching career profession here at DLDU- Manila last May 04, 2009 up to the present. From the period of May 04, 2009 to May 2012, I'm a part- time instructor with a rank of a Lecturer 4. I got my Bachelor's degree in Electronics and Communications Engineering at Mapua Institute of Technology and took my license for that course in 1997. Then, I completed and graduated my Masteral degree of Technology at Technological University of the Philippines (TUP- Manila) last March 2010. After taking this course, I applied as a full- time instructor with the same department and accepted as rank of a teaching Associate last June 2012. From that time I devoted some of my time of researching papers related to my field aside from teaching. The following researches which had already an ISSN numbers: Posicast Pulse Generation using LT Spice Simulations (October 18-19, 2012, ISSN 2094-0297), Security Systems from Remote Farm (September 20-24, 2013, ISSN 2301-3702), Surface Electromyography Signal for Control of Myoelecric Prosthesis of the Upper- Limb Using Independent Component Analysis (September 20-24, 2013, ISSN 2301-3702), Detection and Recognition of Faces from Still Images Utilizing Artificial Neural Networks November, 2013 not yet published from HNICEM but already accepted). Through this papers and well accepted evaluated, I promoted as Assistant Professor 1. I'm handling Electronics and Cmputer subjects and some Communications subjects. My focus of interest right now is to finish my PhD education here at DLSU- Manila and engaging most in Image Processing and Integrated Circuit design as my field of interests.</p>
+			</div>
+			<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+				<br><h4 id="faculty3">AFRICA, AARON DON M.</h4>
+				<p id="content3">Aaron Don M. Africa earned his B.S. Degree in Electronics and Communications Engineering (ECE) at the University of Santo Tomas. He completed his Masters Degree in ECE at the De La Salle University Manila. Presently, he is an Associate Professor at De La Salle University Manila and A Ph.D. graduate in ECE in said school. His research interest are Control Systems, Artificial Intelligence, Optimization Techniques and Expert Systems.</p>
+			</div>
+			<div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+				<br><h4 id="faculty4">ALIPIO, MELCHIZEDEK I.</h4>
+				<p id="content4">He is an associate professor in the Electronics and Communications Engineering Department at De La Salle University. A registered Electronics Engineer in the Philippines, he earned his B.S. in Electronics and Communications Engineering from Colegio de San Juan de Letran Calamba in 2010, his M.E. in Electronics Engineering from Mapua University in 2013, and his Ph.D. in Electrical and Electronics Engineering from the University of the Philippines Diliman in 2018. He is currently a member of the National Research Council of the Philippines, Internet Society, Institute of Electrical and Electronics Engineers, and Association of Computing Machinery. He received the IEEE GCCE Best Paper Award in 2017, the Pacific Telecommunications Council (PTC) Young Scholar Award and World Federation of Engineering Organization (WFEO) Young Engineers Laureate Award both in 2018. He received several fellowship awards from the Internet Engineering Task Force, Internet Corporation for Assigned Names and Numbers, and Asia Pacific Regional Internet Conference on Operational Technologies since 2016. His research interests are broadly in Wireless Sensor Networks, Software-Defined Networking, Data Analytics in Sensor Networks and Intelligent Systems. He is also an advocate of Internet technology and policymaking.</p>
+			</div>
+			<div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+				<br><h4 id="faculty5">AMBATA, LEONARD U.</h4>
+				<p id="content5">Assistant Professor Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+				<br><h4 id="faculty6">ARADA, GERALD P.</h4>
+				<p id="content6">Gerald Pacaba ARADA obtained a B.S. in 1997 from the Polytechnic University of the Philippines (Metro Manila, Philippines), and an M.Eng. in 2004 from De La Salle University (Metro Manila, Philippines) -- both in Electronics and Communications Engineering. G. P. Arada has been an Instructor at the Polytechnic University of the Philippines between 1997 and 2006, an engineer with Analog Devices, Inc. (Cavite, Philippines) during 2006-2009. Since 2009, he has been an Assistant Professor at De La Salle University, from where he is presently on leave, to pursue a Ph.D. at the Hong Kong Polytechnic University. His research interests are in mutual coupling among wire antennas and sensor array signal processing.</p>
+			</div>
+			<div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
+				<br><h4 id="faculty7">BANDALA, ARGEL A.</h4>
+				<p id="content7">Engr. Argel A. Bandala is currently a PhD-ECE Candidate in De La Salle University. He received his MS ECE from the same university in 2012 and received his BS ECE from the Polytechnic University of the Philippines in 2008. He is very active in the IEEE Philippine Section where he served as the Section Secretary for the years 2012 to present. He also serves as the secretary of IEEE Computational Intelligence Society Philippine Section from 2012 to present. He is also an active member of the IEEE Robotics and Automation Society from 2013 to present. His research area is on Computational Intelligence, Evolutionary Computation, Unmanned Aerial Vehicles and Distributed Computation.</p>
+			</div>
+			<div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
+				<br><h4 id="faculty8">BUCAO, BLANCA I.</h4>
+				<p id="content8">Assistant Prof. Lecturer Electronics And Communications Engineering.</p>
+			</div>
+			<div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
+				<br><h4 id="faculty9">CABATUAN, MELVIN K.</h4>
+				<p id="content9">Melvin K. Cabatuan received the B.Sc. degree in Electronics and Communications Engineering (ECE) from Cebu Institute of Technology, Cebu, Philippines, in 2004; MS degree in Engineering from Nara Institute of Science and Technology (NAIST), Nara, Japan, in 2010; and Ph.D. degree in ECE from De La Salle University (DLSU) - Manila in 2016. He joined the Electronics and Communications Engineering department of DLSU in 2011, where he is currently an Assistant Professor. His current research interest involves Machine/Deep Learning, Computer Graphics, and Computer Vision applications to Health Informatics, Education Technology, Game/Graphic Content Development, and Mobile Computing. He is knowledgeable in programming languages - C/Cpp, Java, and MatLab/Octave scripting. He has more than 5 year experience in computer vision application development with OpenCV library in the mobile framework.</p>
+			</div>
+			<div class="tab-pane fade" id="tab10" role="tabpanel" aria-labelledby="tab10-tab">
+				<br><h4 id="faculty10">CATALAN, JOSE ANTONIO M.</h4>
+				<p id="content10">Assistant Professor Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab11" role="tabpanel" aria-labelledby="tab11-tab">
+				<br><h4 id="faculty11">DE LUNA, ROBERT G.</h4>
+				<p id="content11">Associate Prof. Lecturer Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab12" role="tabpanel" aria-labelledby="tab12-tab">
+				<br><h4 id="faculty12">DEL ROSARIO, JAY ROBERT B.</h4>
+				<p id="content12">Jay Robert B. Del Rosario was born at Imus in Cavite, PHILIPPINES, on October 11, 1982. He obtained his Certificate in Mechatronics in Milan, Italy late 2010 after passing the Mechatronics Specialist Exam. An experienced Assistant Professor with a demonstrated history of working in the higher education industry locally and internationally. Skilled in various programming languages, mechatronics and robotics. Strong education professional with a Doctor of Philosophy focused in Electronics and Communications Engineering from De La Salle University- Manila and Doctor of Philosophy (Cand.) in Education major in Educational Management from Cavite State University- Don Severino delas Alas Campus. Dr. Del Rosario was a former Professor and chairman of Mechatronics and Robotics Society in the Kingdom of Bahrain and Kingdom of Saudi Arabia from 2008-2011. His research interests include Mechatronics, Computer Systems Architecture, Webpage Design and Development, Software Engineering, Industrial Automation and Computational Intelligence. Most of his research articles can be viewed in Scopus, Google Scholar and Researchgate and a Professional Member of IEEE.</p>
+			</div>
+			<div class="tab-pane fade" id="tab13" role="tabpanel" aria-labelledby="tab13-tab">
+				<br><h4 id="faculty13">DULAY, ANN E.</h4>
+				<p id="content13">Dr. Ann E. Dulay is an Associate Professor at De La Salle University. She finished her BSECE degree from the University of the East in 1989. She pursued and completed her MSECE degree at De La Salle University in 2000 where she also finished her PhD in 2017. She started teaching in 1991 and taught various courses to include analog and digital electronics, IC design, computer aided design, methods of research, safety engineering, ECE laws and ethics. Her research interests include power line communications, FPGA and microcontroller-based systems, microelectronics, smart cities, internet-of-things, and disaster resiliency. Dr. Dulay is a Professional Electronics Engineer and an active member and former officer of the Institute of Electronics Engineers of the Philippines (IECEP). She is also a member of IEEE and has presented/published research outputs in various conferences and journals.</p>
+			</div>
+			<div class="tab-pane fade" id="tab14" role="tabpanel" aria-labelledby="tab14-tab">
+				<br><h4 id="faculty14">DUPO, VOLTAIRE B.</h4>
+				<p id="content14">Assistant Prof. Lecturer Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab15" role="tabpanel" aria-labelledby="tab15-tab">
+				<br><h4 id="faculty15">GRAZA, MARVIL V.</h4>
+				<p id="content15">Assistant Prof. Lecturer Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab16" role="tabpanel" aria-labelledby="tab16-tab">
+				<br><h4 id="faculty16">GUSTILO, REGGIE C.</h4>
+				<p id="content16">FACULTY MEMBER- ECE DEPARTMENT ADVISER- ECES SPECIALIZATION- WIRELESS COMMUNICATIONS - INTELLIGENT SYSTEMS</p>
+			</div>
+			<div class="tab-pane fade" id="tab17" role="tabpanel" aria-labelledby="tab17-tab">
+				<br><h4 id="faculty17">ILLAHI, ANA ANTONIETTE C.</h4>
+				<p id="content17">Assistant Professor Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab18" role="tabpanel" aria-labelledby="tab18-tab">
+				<br><h4 id="faculty18">JOSE, JOHN ANTHONY C.</h4>
+				<p id="content18">Engr. John Anthony Jose received a degree of BS/MS in Electronics Engineering ladderized program in De La Salle University last 2015. In his graduation, he received Cum Laude, Outstanding master's thesis award, and Eduardo Cojuangco Jr. Award. On his licensure examination, he received an award for being "Top 3 in the ECE board examination" held in October 2015. As a fresh graduate, he worked in Analog Devices as Applications Development Engineer but later realized that teaching and research is his passion. At present, he is teaching various ECE courses and an active member of IEEE Philippine section.</p>
+			</div>
+			<div class="tab-pane fade" id="tab19" role="tabpanel" aria-labelledby="tab19-tab">
+				<br><h4 id="faculty19">LAMBOLOTO, AL IVAN G.</h4>
+				<p id="content19">Lecturer Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab20" role="tabpanel" aria-labelledby="tab20-tab">
+				<br><h4 id="faculty20">LIGUTAN, DINO DOMINIC F.</h4>
+				<p id="content20">Assistant Professor Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab21" role="tabpanel" aria-labelledby="tab21-tab">
+				<br><h4 id="faculty21">LIM, GIAN CARLO L.</h4>
+				<p id="content21">Assistant Prof. Lecturer Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab22" role="tabpanel" aria-labelledby="tab22-tab">
+				<br><h4 id="faculty22">LLORENTE, CESAR A.</h4>
+				<p id="content22">Graduated BS Electrical Engineering from Adamson University - 1985 Registered Electrical Engineer Graduated Master of Engineering major in Computer Engineering from Pamantasan ng Lungsod ng Maynila - 2003 Research Interest Micro[processors and Microcontrollers Embedded Systems Digital Systems Design using FPGA design flow Machine Vision Intelligent Systems</p>
+			</div>
+			<div class="tab-pane fade" id="tab23" role="tabpanel" aria-labelledby="tab23-tab">
+				<br><h4 id="faculty23">MAGSINO, ELMER R.</h4>
+				<p id="content23">Elmer R. Magsino received his Bachelor’s degree in Electronics and Communications Engineering and Master’s degree in Electrical Engineering from the University of the Philippines Diliman in 2002 and 2006 respectively. Before undertaking the academic career, he served as a design engineer in a power electronics company. He is currently an Assistant Professor at the Electronics and Communications Engineering Department Gokongwei College of Engineering De La Salle University and has also served as the Program Coordinator for the Computer Engineering program of the same department. His research interests focus on non-linear control systems, rotorcraft unmanned aerial vehicles, disaster risk reduction and vehicular ad hoc networks. He has published and presented several research papers in various conferences and journal proceedings. Currently, research projects leading towards disaster risk reduction using unmanned aerial vehicles are undertaken together with his colleagues and student advisees. He spends his free time with his family in watching movies, going on adventures, travelling to different places and dining out.</p>
+			</div>
+			<div class="tab-pane fade" id="tab24" role="tabpanel" aria-labelledby="tab24-tab">
+				<br><h4 id="faculty24">MANINGO, JOSE MARTIN Z.</h4>
+				<p id="content24">Engr. Jose Martin Z. Maningo is a Teaching Associate in the Department of Electronics and Communications Engineering. He graduated BS-MS ECE Cum Laude in De La Salle University - Manila last 2016. He has placed 10th in the ECE Licensure Exam in April 2017. He has various publications in the field of Swarm Robotics and Computational Intelligence.</p>
+			</div>
+			<div class="tab-pane fade" id="tab25" role="tabpanel" aria-labelledby="tab25-tab">
+				<br><h4 id="faculty25">MANZANO, ENRIQUE M.</h4>
+				<p id="content25">Dr. Enrique M. Manzano obtained his Doctor of Philosophy in Electronics and Communications Engineering from the De La Salle University – Manila having obtained both his Bachelor’s and Master’s degrees in Electrical Engineering with Specialization in Computers from the University of the Philippines, Diliman Quezon City. His research is focused on conducting polymers having developed a novel solar cell, , super capacitors, super capattery, rechargeable batteries, and other energy –storage devices. He is also active in creating active and passive gas sensors and bio-sensors. In instrumentation, he designs and fabricates non-invasive health-monitoring devices, some in collaboration with universities in Taiwan and in the US. Along these work he has published several papers.</p>
+			</div>
+			<div class="tab-pane fade" id="tab26" role="tabpanel" aria-labelledby="tab26-tab">
+				<br><h4 id="faculty26">MAPPATAO, GERINO P.</h4>
+				<p id="content26">Gerino P. Mappatao was born in Tuao, Cagayan, Philippines in November 1967. He received the B.S. degree in electronics and communications engineering (ECE) from Saint Louis University, Baguio City, Philippines in 1989, the M.S. and PhD degrees in ECE from De La Salle University-Manila, Philippines in 1998 and 2012, respectively. He is currently an Associate Professor in the Department of Electronics and Communications of De La Salle University-Manila. He authored and co-authored papers in conference proceedings and Journals on antennas, broadcast engineering and wireless communications.</p>
+			</div>
+			<div class="tab-pane fade" id="tab27" role="tabpanel" aria-labelledby="tab27-tab">
+				<br><h4 id="faculty27">MATERUM, LAWRENCE Y.</h4>
+				<p id="content27">Lawrence Materum received the B.Sc. degree in electronics and communications engineering with honors and scholarship from Mapúa Institute of Technology (now Mapúa University), the M.Sc. degree in electrical engineering major in computers and communications from the University of the Philippines Diliman through an Analog Devices Fellowship, and the Ph.D. degree in international development engineering (major in electrical/electronics engineering) from Tokyo Institute of Technology through a MEXT Scholarship. After receiving his M.S. degree, he co-developed integrated circuit tests for cellular and emerging radio chips at Analog Devices. As an industry-academia-government collaboration researcher-engineer in the Research Institute of Electrical Communication of Tohoku University, he developed and co-proposed the first radio non-line-of-sight wideband indoor channel models for 60-GHz beamforming. He received the best paper award at the 13th International Symposium on Antennas and Propagation for his contribution to unsupervised learning of the grouping of electromagnetic signals, which is crucial for knowing various characteristics of such signals and the development of wireless channel models. Currently, he is a faculty of the Electronics and Communications Engineering Department of De La Salle University. He is in the field of telecommunications, and his recent interests include but not limited to propagation channel (measurements, analysis, modeling), adaptive antenna arrays, wireless sensing, unsupervised and supervised machine learning, pattern estimation of random processes, forecasting of momentum stochastic processes, and sustainable technology transitions.</p>
+			</div>
+			<div class="tab-pane fade" id="tab28" role="tabpanel" aria-labelledby="tab28-tab">
+				<br><h4 id="faculty28">NAVEA, ROY FRANCIS R.</h4>
+				<p id="content28">Dr. Roy Francis Navea received his B.S. degree in Electronics and Communications Engineering (ECE) from the Mapua Institute of Technology, Intramuros, Manila in 2003, M.S. and PhD degree in ECE from De La Salle University, Manila in 2012 and 2017, respectively. Currently, he is an Associate Professor in the Electronics and Communications Engineering Department of De La Salle University, Manila. His research interest is generally in the field of digital signal processing associated to bioinformatics and biomedical devices, electronic and communication networks, and internet of things that also includes artificial and computational intelligence. His recent works dealt with the analysis of 1D (acoustic & EEG) and 2D (images) signals, and networked computer vision-based surveillance systems.</p>
+			</div>
+			<div class="tab-pane fade" id="tab29" role="tabpanel" aria-labelledby="tab29-tab">
+				<br><h4 id="faculty29">OCHOTORENA, CARLO NOEL E.</h4>
+				<p id="content29">Carlo Noel Ochotorena received his B.S. and M.S. degrees in Electronics and Communications Engineering from De La Salle University, Manila, Philippines in 2009 and 2012 respectively. He received his Ph.D. in International Development Engineering from the Tokyo Institute of Technology, Japan in 2020 with his research focusing on image filtering techniques. Since 2013, he has been an assistant professor with the Electronics and Communications Engineering at De La Salle University, Manila Philippines. His research interests lie in image processing, image compression, and computational photography. Apart from his main area of research, he also takes an interest in food chemistry with an emphasis towards bringing technology to better understand and enrich existing traditional processes.</p>
+			</div>
+			<div class="tab-pane fade" id="tab30" role="tabpanel" aria-labelledby="tab30-tab">
+				<br><h4 id="faculty30">PADILLA, MARK LESTER F.</h4>
+				<p id="content30">Assistant Professor Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab31" role="tabpanel" aria-labelledby="tab31-tab">
+				<br><h4 id="faculty31">PAKZAD, ARMIE E.</h4>
+				<p id="content31">Armie E. Pakzad is an Assistant Professor in the Electronics and Communications Engineering Department at the De La Salle University (DLSU) where she handles Computer Engineering professional courses. A graduate of Bachelor of Science in Computer Engineering and a holder of Master of Science in Electrical Engineering major in Computer Engineering. Completed her PhD ECE academic requirements at DLSU Manila. With research interest in microcontrollers applied to environmental technological projects.</p>
+			</div>
+			<div class="tab-pane fade" id="tab32" role="tabpanel" aria-labelledby="tab32-tab">
+				<br><h4 id="faculty32">ROQUE, MARIA ANTONETTE C.</h4>
+				<p id="content32">Assistant Professor Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab33" role="tabpanel" aria-labelledby="tab33-tab">
+				<br><h4 id="faculty33">SYBINGCO, EDWIN</h4>
+				<p id="content33">Dr. Edwin Sybingco is a faculty of the DLSU ECE Department. He completed his Doctoral of Philosophy in Electronics and Communications Engineering in De La Salle University area of Digital Signal Processing (DSP) focusing on Big Data and Intelligent Systems. He received his Master of Science (Electronics and Communications Engineering) from De La Salle University. He already published more than 30 scientific papers internationally in the field of DSP, Machine Vision, Computational Intelligence, and robotics.</p>
+			</div>
+			<div class="tab-pane fade" id="tab34" role="tabpanel" aria-labelledby="tab34-tab">
+				<br><h4 id="faculty34">TORREGOZA, MARK LORENZE D.</h4>
+				<p id="content34">Mark Lorenze Torregoza finished his Bachelor of Science in Electronics and Communications Engineering at Polytechnic University of the Philippines year 2008 and passed the corresponding licensure exam the same year. In 2012 he graduated Master of Science of the same course at De La Salle University Manila and is currently taking his PhD in the same university of the same course. He worked as a network engineer for a telecommunications company early in his career and now a member of the faculty of the ECE department of DLSU-Manila. His research interest is mainly on computer networks, routing and switching algorithms.</p>
+			</div>
+			<div class="tab-pane fade" id="tab35" role="tabpanel" aria-labelledby="tab35-tab">
+				<br><h4 id="faculty35">YAP, RODERICK Y.</h4>
+				<p id="content35">Yap's field of specialization is in Integrated Circuit Design. Most of the digital design he did were implemented on Field Programmable Gate Array as the target device using Hardware Description Language as design input. Some of the projects he worked on before include microprocessor development and control systems. His more recent works include hardware modeling on some artificial intelligence applications such as fuzzy logic, genetic algorithm, convolutional neural network and clustering.</p>
+			</div>
+			<div class="tab-pane fade" id="tab36" role="tabpanel" aria-labelledby="tab36-tab">
+				<br><h4 id="faculty36">YASAY, BERNARD G.</h4>
+				<p id="content36">Assistant Prof. Lecturer Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab37" role="tabpanel" aria-labelledby="tab37-tab">
+				<br><h4 id="faculty37">ALO, MA. ROWENA F.</h4>
+				<p id="content37">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab38" role="tabpanel" aria-labelledby="tab38-tab">
+				<br><h4 id="faculty38">BORLAGDAN, ROMMEL ANTOLIN D.</h4>
+				<p id="content38">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab39" role="tabpanel" aria-labelledby="tab39-tab">
+				<br><h4 id="faculty39">CASIANO, ROLAND T. JR.</h4>
+				<p id="content39">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab40" role="tabpanel" aria-labelledby="tab40-tab">
+				<br><h4 id="faculty40">CORDIAL, JOSEPH L.</h4>
+				<p id="content40">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab41" role="tabpanel" aria-labelledby="tab41-tab">
+				<br><h4 id="faculty41">ELIQUEN, ENGELBERT A.</h4>
+				<p id="content41">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab42" role="tabpanel" aria-labelledby="tab42-tab">
+				<br><h4 id="faculty42">GOMEZ, RODOLFO F. JR.</h4>
+				<p id="content42">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab43" role="tabpanel" aria-labelledby="tab43-tab">
+				<br><h4 id="faculty43">IGNACIO, RONALD C.</h4>
+				<p id="content43">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab44" role="tabpanel" aria-labelledby="tab44-tab">
+				<br><h4 id="faculty44">MACADAEG, AURENILO T.</h4>
+				<p id="content44">Academic Service Faculty Electronics And Communications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab45" role="tabpanel" aria-labelledby="tab45-tab">
+				<br><h4 id="faculty45">TALA, RAMEL S.</h4>
+				<p id="content45">Co-Academic Personnel Electronics And Communications Engineering</p>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

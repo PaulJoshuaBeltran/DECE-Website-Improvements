@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>De La Salle University</title>
+    <link rel="icon" href="assets/images/dlsu_icon.png" />
+    <link rel="shortcut icon" href="assets/images/dlsu_icon.png" />
+    <link rel="stylesheet" href="assets/css/shortcodes/shortcodes.css" />
+    <link rel="stylesheet" href="assets/css/index_style.css" class="skin" />
+    <link rel="stylesheet" href="assets/css/downloadable-forms.css" class="skin" />
+
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <div></div>
+        <div class="page-content bg-white">
+            <!-- Content -->
+            <div class="page-banner contact-page section-sp2">
+                <div class="container">
+                    <div id="page1" class="pagination-page">
+                        <h2>Downloadable Forms</h2>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">THESIS FORMS</a>
+                        </div>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">LAB FORMS</a>
+                        </div>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">POLICIES</a>
+                        </div>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">CONSENT FORM</a>
+                        </div>
+                    </div>
+                    <div id="page2" class="pagination-page" style="display: none;">
+                        <p>Downloadable Forms</p>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">DLSU VIEWBOOK
+                            </a>
+                        </div>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">ADMISSION </a>
+                        </div>
+                        <div class="vn-green">
+                            <a href="#" class="btn-wrap">DEGREE PROGRAM</a>
+                        </div>
+                    </div>
+                    <!-- Bootstrap Pagination -->
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#" onclick="showPage('page1')">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#" onclick="showPage('page2')">2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content END -->
+    </div>
+
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.getElementsByClassName("pagination-page");
+            for (let i = 0; i < pages.length; i++) {
+                pages[i].style.display = "none";
+            }
+            document.getElementById(pageId).style.display = "block";
+        }
+    </script>
+
+    <!-- External JS Links-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

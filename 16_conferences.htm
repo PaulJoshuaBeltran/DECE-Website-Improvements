@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>De La Salle University</title>
+    <link rel="icon" href="assets/images/dlsu_icon.png">
+    <link rel="shortcut icon" href="assets/images/dlsu_icon.png">
+    <link rel="stylesheet" href="assets/css/shortcodes/shortcodes.css">
+    <link rel="stylesheet" href="assets/css/index_style.css" class="skin" />
+    <link rel="stylesheet" href="assets/css/conferences.css" class="skin">
+    <!-- External JS Links-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body id="bg">
+    <div class="page-wraper">
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <div class="content-block">
+                <div class="section-area section-sp1">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Left part start -->
+                            <div class="col-lg-8">
+                                <!-- Default Page - Show all conferences -->
+                                <div id="allConferences" class="pagination-page">
+                                    <!-- Show all conferences here -->
+                                    <div class="blog-post blog-md clearfix">
+                                        <div class="ttr-post-media">
+                                            <a><img class="conference-img"
+                                                    src="assets/images/conferences/conference-1.png" alt=""></a>
+                                        </div>
+                                        <div class="ttr-post-info">
+                                            <ul class="media-post">
+                                                <li><a><i class="fa fa-calendar"></i>May 12-13, 2022</a></li>
+                                                <li><a><i class="fa fa-user"></i>Speaker: Christian P. Gopez</a></li>
+                                            </ul>
+                                            <h5 class="post-title"><a>Research Congress 2022</a></h5>
+                                            <p>Beyond the New Normal: Realizing innovations for a Sustainable and
+                                                Crisis-Proactive Society</p>
+                                            <div class="post-extra">
+                                                <a href="#" class="btn-link"
+                                                    onclick="openInNewTab('https://www.dlsu.edu.ph/conferences/research-congress/research-congress-2022/')">
+                                                    READ MORE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-post blog-md clearfix">
+                                        <div class="ttr-post-media">
+                                            <a><img class="conference-img"
+                                                    src="assets/images/conferences/conference-2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="ttr-post-info">
+                                            <ul class="media-post">
+                                                <li><a><i class="fa fa-calendar"></i>Feb 20, 2019</a></li>
+                                                <li><a><i class="fa fa-user"></i>Speaker: Gulliver Eric Alawas</a></li>
+                                            </ul>
+                                            <h5 class="post-title"><a>12th DLSU ART Congress</a>
+                                            </h5>
+                                            <p>PADAYON SINING: A CELEBRATION OF THE ENDURING VALUE OF THE HUMANITIES</p>
+                                            <div class="post-extra">
+                                                <a href="#" class="btn-link"
+                                                    onclick="openInNewTab('https://www.dlsu.edu.ph/conferences/dlsu-arts-congress/12th-arts-congress/schedule-of-paper-presentation/')">
+                                                    READ MORE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-post blog-md clearfix">
+                                        <div class="ttr-post-media">
+                                            <a><img class="conference-img"
+                                                    src="assets/images/conferences/conference-3.jpg" alt=""></a>
+                                        </div>
+                                        <div class="ttr-post-info">
+                                            <ul class="media-post">
+                                                <li><a href="#"><i class="fa fa-calendar"></i>November 21-22, 2018</a>
+                                                </li>
+                                                <li><a href="#"><i class="fa fa-user"></i>Speaker: David Shan-Hill
+                                                        Wong</a></li>
+                                            </ul>
+                                            <h5 class="post-title"><a>Regional Symposium on Chemical Engineering</a>
+                                            </h5>
+                                            <p>Intensifying the Role of Chemical Engineering for Sustainable Cities</p>
+                                            <div class="post-extra">
+                                                <a href="#" class="btn-link"
+                                                    onclick="openInNewTab('https://www.dlsu.edu.ph/conferences/rsce/')">
+                                                    READ MORE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-post blog-md clearfix">
+                                        <div class="ttr-post-media">
+                                            <a><img class="conference-img"
+                                                    src="assets/images/conferences/conference-4.jpg" alt=""></a>
+                                        </div>
+                                        <div class="ttr-post-info">
+                                            <ul class="media-post">
+                                                <li><a href="#"><i class="fa fa-calendar"></i>March 21, 2019</a></li>
+                                                <li><a href="#"><i class="fa fa-user"></i>Speaker: Thomas</a></li>
+                                            </ul>
+                                            <h5 class="post-title"><a>ICAST</a>
+                                            </h5>
+                                            <p>Serving to promote international exchange among graduate students and
+                                                young researchers</p>
+                                            <div class="post-extra">
+                                                <a href="#" class="btn-link"
+                                                    onclick="openInNewTab('https://www.dlsu.edu.ph/conferences/icast-2018/')">
+                                                    READ MORE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add more conferences here -->
+                                </div>
+
+                                <!-- Search Results - Display specific conference -->
+                                <div id="searchResults" class="pagination-page">
+                                    <!-- Search Results will be displayed here -->
+                                </div>
+
+
+                            </div>
+                            <!-- Left part END -->
+
+                            <!-- Side bar start -->
+                            <div class="col-lg-4 sticky-top" style="top: 20px; position: sticky;">
+                                <aside class="side-bar sticky-top">
+                                    <div class="widget">
+                                        <h6 class="widget-title">Search</h6>
+                                        <div class="search-bx style-1">
+                                            <form role="search" id="searchForm">
+                                                <div class="input-group">
+                                                    <input name="text" id="searchInput" class="form-control"
+                                                        placeholder="Enter your keywords..." type="text">
+                                                    <button type="submit" class="fa fa-search text-primary"></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="widget recent-posts-entry" style="position: fixed;">
+                                        <h6 class="widget-title">Previous Conferences</h6>
+                                        <div class="widget-post-bx">
+                                            <div class="widget-post clearfix">
+                                                <div class="ttr-post-media"> <img
+                                                        src="assets/images/conferences/conference-6.jpg" width="500"
+                                                        height="300" alt=""> </div>
+                                                <div class="ttr-post-info">
+                                                    <div class="ttr-post-header">
+                                                        <h6 class="post-title"><a>DLSU Innovation and Technology
+                                                                (DITECH) Fair
+                                                            </a></h6>
+                                                    </div>
+                                                    <ul class="media-post">
+                                                        <li><a><i class="fa fa-calendar"></i>November 22, 2018</a>
+                                                        </li>
+                                                        <li><a
+                                                                onclick="openInNewTab('https://www.dlsu.edu.ph/conferences/ditech-fair/ditech-2018/')"><i
+                                                                    class="fa fa-comments-o"></i>Learn More</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="widget-post clearfix">
+                                                <div class="ttr-post-media"> <img
+                                                        src="assets/images/conferences/conference-8.jpg" width="250"
+                                                        height="200" alt=""> </div>
+                                                <div class="ttr-post-info">
+                                                    <div class="ttr-post-header">
+                                                        <h6 class="post-title"><a>First DLSU Food Research Program
+                                                                Workshop </a></h6>
+                                                    </div>
+                                                    <ul class="media-post">
+                                                        <li><a><i class="fa fa-calendar"></i>September 2011</a>
+                                                        </li>
+                                                        <li><a
+                                                                onclick="openInNewTab('https://www.dlsu.edu.ph/conferences/first-dlsu-food-research-program-workshop/')"><i
+                                                                    class="fa fa-comments-o"></i>Learn More</a>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>
+                            <!-- Side bar END -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content END-->
+    </div>
+
+    <script>
+
+        function openInNewTab(url) {
+            const newTab = window.open(url, '_blank');
+            newTab.focus();
+        }
+        // Array to hold conferences data
+        const conferences = [
+            {
+                title: "Research Congress 2022",
+                date: "May 12-13, 2022",
+                speaker: "David Shan-Hill Wong",
+                content: "Beyond the New Normal: Realizing innovations for a Sustainable and Crisis-Proactive Society",
+                image: "assets/images/conferences/conference-1.png",
+                link: "https://www.dlsu.edu.ph/conferences/research-congress/research-congress-2022/"
+
+            },
+            {
+                title: "12th DLSU ART Congress",
+                date: "Feb 20, 2019",
+                speaker: "Gulliver Eric Alawas",
+                content: "Intensifying the Role of Chemical Engineering for Sustainable Cities",
+                image: "assets/images/conferences/conference-2.jpg",
+                link: "https://www.dlsu.edu.ph/conferences/dlsu-arts-congress/12th-arts-congress/schedule-of-paper-presentation/"
+
+            },
+            {
+                title: "Regional Symposium on Chemical Engineering",
+                date: "November 21, 2018",
+                speaker: "Gulliver Eric Alawas",
+                content: "Intensifying the Role of Chemical Engineering for Sustainable Cities",
+                image: "assets/images/conferences/conference-3.jpg",
+                link: "https://www.dlsu.edu.ph/conferences/rsce/"
+
+            },
+            {
+                title: "ICAST",
+                date: "November 21, 2018",
+                speaker: "Thomas",
+                content: "Serving to promote international exchange among graduate students and young researchers",
+                image: "assets/images/conferences/conference-4.jpg",
+                link: "https://www.dlsu.edu.ph/conferences/icast-2018/"
+
+            },
+            // Add more conferences here
+        ];
+
+        // Function to filter the specific conference based on search input
+        function searchConference(searchText) {
+            const searchResult = conferences.find(conf => conf.title.toLowerCase().includes(searchText.toLowerCase()));
+            const searchResultsContainer = document.getElementById("searchResults");
+            const allConferencesContainer = document.getElementById("allConferences");
+            searchResultsContainer.innerHTML = "";
+
+            if (searchResult) {
+                const confHTML = `
+                    <div class="blog-post blog-md clearfix">
+                        <div class="ttr-post-media">
+                            <a><img class="conference-img" src="${searchResult.image}" alt=""></a>
+                        </div>
+                        <div class="ttr-post-info">
+                            <ul class="media-post">
+                                <li><a><i class="fa fa-calendar"></i>${searchResult.date}</a></li>
+                                <li><a><i class="fa fa-user"></i>Speaker: ${searchResult.speaker}</a></li>
+                            </ul>
+                            <h5 class="post-title"><a>${searchResult.title}</a></h5>
+                            <p>${searchResult.content}</p>
+                            <div class="post-extra">
+                                <a href="#" class="btn-link"
+                                            onclick="openInNewTab('${searchResult.link}')">
+                                    READ MORE
+                                </a>                            
+                            </div>
+                        </div>
+                    </div>
+                `;
+                searchResultsContainer.innerHTML = confHTML;
+                allConferencesContainer.style.display = "none"; // Hide all conferences when showing search results
+            } else {
+                searchResultsContainer.innerHTML = "<p>No matching conference found.</p>";
+                allConferencesContainer.style.display = "block"; // Show all conferences when no search results
+            }
+        }
+
+        // Handle the form submission
+        document.getElementById("searchForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const searchText = document.getElementById("searchInput").value;
+            searchConference(searchText);
+        });
+    </script>
+</body>
+
+</html>

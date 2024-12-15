@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Horizontal Card List with Image on Left</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add Bootstrap JS and jQuery scripts here (if needed) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    /* Custom CSS to adjust the card layout */
+    .container.mt-5 {
+	  margin-left: 10px !important;
+	  margin-right: 10px !important;
+	  margin-top: 20px !important;
+    }
+	.card-horizontal {
+	  align-items: center;
+      display: flex;
+      flex-direction: row;
+    }
+    .card-horizontal .img-fluid {
+      width: 100px;
+      height: 100px;
+    }
+	h5 { font-size: 17px; }
+	p { font-size: 13px; }
+  </style>
+  <script>
+	  var faculty = ["Prof. Dr. Edwin Sybingco",
+					"Prof. Dr. Aaron Africa",
+					"Prof. Dr. Lawrence Materum",
+					"Prof. Dr. Gerino Mappatao",
+					"Prof. Dr. Reggie Gustilo",
+					"Dr. Ann Dulay",
+					"Dr. Gerald Arada",
+					"Dr. Enrique Manzano",
+					"Dr. Melvin Cabatuan",
+					"Dr. Carlo Ochotorena",
+					"Dr. Melchizedek Alipio",
+					"Dr. Cesar Llorente",
+					"Dr. Roy Navea",
+					"Dr. Roderick Yap",
+					"Engr. Jose Antonio Catalan",
+					"Engr. Ma. Antonette Roque",
+					"Dr. Jay Robert Del Rosario",
+					"Engr. Donabel Abuan",
+					"Engr. Leonard Ambata",
+					"Engr. Alexander Abad",
+					"Engr. Jose Martin Maningo",
+					"Engr. John Anthony Jose",
+					"Engr. Elmer Magsino",
+					"Engr. Mark Lorenze Torregoza",
+					"Engr. Marvil Graza",
+					"Engr. Gian Carlo Lim",
+					"Engr. Blanca Bucao",
+					"Engr. Voltaire Dupo",
+					"Engr. Aurenilo Macadaeg",
+					"Mr. Rodolfo Gomez",
+					"Mr. Rommel Borlagdan",
+					"Mr. Roland Casiano",
+					"Mr. Ronald Ignacio",
+					"Mr. Engelbert Eliquen",
+					"Mr. Joseph Cordial",
+					"Mr. Ramel Tala"];
+	  var description = ["Full Professor",
+						"Full Professor",
+						"Full Professor",
+						"Full Professor",
+						"Full Professor",
+						"Associate Professor",
+						"Associate Professor",
+						"Associate Professor",
+						"Associate Professor",
+						"Associate Professor",
+						"Associate Professor",
+						"Adjunct Professor",
+						"Associate Professor",
+						"Associate Professor",
+						"Assistant Professor",
+						"Assistant Professor",
+						"Associate Professor",
+						"Assistant Professor",
+						"Assistant Professor",
+						"Assistant Professor",
+						"Assistant Professor",
+						"Assistant Professor",
+						"Assistant Professor",
+						"Assistant Prof. Lecturer",
+						"Assistant Prof. Lecturer",
+						"Assistant Prof. Lecturer",
+						"Assistant Prof. Lecturer",
+						"Assistant Prof. Lecturer",
+						"Academic Service Faculty",
+						"Laboratory Technician",
+						"Laboratory Technician",
+						"Laboratory Technician",
+						"Laboratory Technician",
+						"Laboratory Technician",
+						"Laboratory Technician",
+						"Laboratory Technician"];
+						
+	  function createCard(index, keyword) {
+		  var containerDiv = document.getElementById("faculty");
+		  
+		  // New child's content
+		  if (keyword == "" ||
+			(faculty[index - 4].toLowerCase().includes(keyword.toLowerCase())
+				|| description[index - 4].toLowerCase().includes(keyword.toLowerCase()))) {
+				  var container1 = document.createElement("div");
+				  container1.className = "col-md-4";
+				  var container2 = document.createElement("div");
+				  container2.className = "card card-horizontal";
+				  
+				  var cardBody = document.createElement("div");
+				  cardBody.className = "card-body";
+				  
+				  var cardTitle = document.createElement("h5");
+				  cardTitle.className = "card-title";
+				  cardTitle.textContent = faculty[(index - 4)];
+				  
+				  var cardText = document.createElement("p");
+				  cardText.className = "card-text";
+				  cardText.textContent = description[(index - 4)];
+				  
+				  var cardImg = document.createElement("img");
+				  cardImg.src = "assets/images/org_faculty/" + index + ".jpg";
+				  cardImg.className = "card-img-top img-fluid";
+				  cardImg.alt = "Card Image 1";
+				  
+				  // Add the children to the parent
+				  container1.appendChild(container2);
+				  container2.appendChild(cardImg);
+				  container2.appendChild(cardBody);
+				  cardBody.appendChild(cardTitle);
+				  cardBody.appendChild(cardText);
+				  containerDiv.appendChild(container1);
+		  }
+	  }
+	  
+	  // Event function once HTML is loaded
+	  document.addEventListener("DOMContentLoaded", function() {
+		for (var i = 4; i < faculty.length; i++) {
+		  createCard(i, "");
+		}
+	  });
+	  // Event function once the search button is clicked
+	  function receiveTextFromParent(event) {
+		  var sort = event.data;
+		  var receivedText = event.data;
+		  var containerDiv = document.getElementById("faculty");
+		  
+		  // Remove all child from the container
+		  while (containerDiv.firstChild) {
+			containerDiv.removeChild(containerDiv.firstChild);
+		  }
+		  // Receive the text from parent HTML
+		  if (receivedText.substring(0,1) == "n"){
+			  for (var i = 4; i < faculty.length; i++) {
+				  createCard(i, receivedText.substring(1));
+				}
+		  } else if (receivedText.substring(0,1) == "r"){
+			  for (var i = faculty.length - 1; i >= 4; i--) {
+				  createCard(i, receivedText.substring(1));
+				}
+		  }
+		}
+
+		// Add event listener to listen for messages from the parent
+		window.addEventListener("message", receiveTextFromParent, false);
+  </script>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row" id="faculty">
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>De La Salle University</title>
+	<link rel="icon" href="assets/images/dlsu_icon.png">
+	<link rel="shortcut icon" href="assets/images/dlsu_icon.png">
+	<link rel="stylesheet" href="assets/css/shortcodes/shortcodes.css">
+	<link rel="stylesheet" href="assets/css/index_style.css" class="skin">
+
+	<!-- External JavaScripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/functions.js"></script>
+	<script src='../../www.google.com/recaptcha/api.js'></script>
+	<script>
+		function rename_banner(name1, name2) {
+			document.getElementById("banner_name").innerText = name2;
+			document.getElementById("path_root").innerText = name1;
+			document.getElementById("path_leaf").innerText = name2;
+		}
+	</script>
+	<style>
+		.external-content-item {
+			height: 550px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body id="bg">
+	<div class="page-wraper">
+		<div></div>
+		<div class="flex-container">
+			<div class="flex-item header">
+				<!-- Header -->
+				<header class="header rs-nav">
+					<div class="sticky-header navbar-expand-lg">
+						<div class="menu-bar clearfix">
+							<div class="container clearfix">
+								<div class="menu-logo">
+									<a href="index.html"><img src="assets/images/logos.png" alt=""></a>
+								</div>
+								<button class="navbar-toggler collapsed menuicon justify-content-end" type="button"
+									data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown"
+									aria-expanded="false" aria-label="Toggle navigation">
+									<span></span><span></span><span></span>
+								</button>
+								<div class="secondary-menu">
+									<div class="secondary-inner">
+										<ul>
+											<li><a href="javascript:;"><i class="fa fa-facebook"></i></a></li>
+											<li><a href="javascript:;"><i class="fa fa-google-plus"></i></a></li>
+											<li><a href="javascript:;"><i class="fa fa-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="nav-search-bar">
+									<form action="#">
+										<input name="search" type="text" class="form-control"
+											placeholder="Type to search">
+										<span><i class="ti-search"></i></span>
+									</form>
+									<span id="search-remove"><i class="ti-close"></i></span>
+								</div>
+								<div class="menu-links navbar-collapse collapse justify-content-start"
+									id="menuDropdown">
+									<div class="menu-logo">
+										<a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+									</div>
+									<ul class="nav navbar-nav">
+										<li><a href="">HOME<i class="fa fa-chevron-down"></i></a>
+											<ul class="sub-menu">
+												<li><a href="1_home_vision.html" target="winmain"
+														onclick="rename_banner('Home','Vision')">Vision</a></li>
+												<li><a href="1_home_mission.html" target="winmain"
+														onclick="rename_banner('Home','Mission')">Mission</a></li>
+												<li><a href="1_home_program_history.html" target="winmain"
+														onclick="rename_banner('Home','Program History')">Program
+														History</a></li>
+											</ul>
+										</li>
+										<li><a href="">PAGES<i class="fa fa-chevron-down"></i></a>
+											<ul class="sub-menu">
+												<li><a href="2_elga.html" target="winmain"
+														onclick="rename_banner('Pages','ELGA')">ELGA</a></li>
+												<li><a href="3_peo.html" target="winmain"
+														onclick="rename_banner('Pages','PEO')">PEO</a></li>
+												<li><a href="4_student_outcomes.html" target="winmain"
+														onclick="rename_banner('Pages','Student Outcomes')">Student
+														Outcomes</a></li>
+												<li><a href="5_curriculum_map.html" target="winmain"
+														onclick="rename_banner('Pages','Curriculum Map')">Curriculum
+														Map</a></li>
+												<li><a href="6_recogn_accredit_assessment.html" target="winmain"
+														onclick="rename_banner('Pages','Recognitions, Accreditations and Assessments')">Recognitions,
+														Accreditations and Assessments</a></li>
+												<li><a href="8_enrollment_grad_stat.htm" target="winmain"
+														onclick="rename_banner('Pages','Enrollment and Graduation Statistics')">Enrollment
+														and Graduation Statistics</a></li>
+												<li><a href="9_department_organization_struct.htm" target="winmain"
+														onclick="rename_banner('Pages','Department Organizational Structure')">Department
+														Organizational Structure</a></li>
+												<li><a href="10_faculty_profile.htm" target="winmain"
+														onclick="rename_banner('Pages','Faculty Profile')">Faculty
+														Profile</a></li>
+												<li><a href="11_lab_facilities.htm" target="winmain"
+														onclick="rename_banner('Pages','Laboratory and Facilities')">Laboratory
+														and Facilities</a></li>
+												<li><a href="12_research_publications.htm" target="winmain"
+														onclick="rename_banner('Pages','Research and Publications')">Research
+														and Publications</a></li>
+											</ul>
+										</li>
+										<li><a href="">OTHER PAGES<i class="fa fa-chevron-down"></i></a>
+											<ul class="sub-menu">
+												<li><a href="13_community_engage_link.htm" target="winmain"
+														onclick="rename_banner('Pages','Community Engagement and Linkages')">Community
+														Engagement and Linkages</a></li>
+												<li><a href="14_awards_achievements.htm" target="winmain"
+														onclick="rename_banner('Pages','Awards and Achievements')">Awards
+														and Achievements</a></li>
+												<li><a href="15_thesis_archives.htm" target="winmain"
+														onclick="rename_banner('Pages','Thesis Archives')">Thesis
+														Archives</a></li>
+												<li><a href="16_conferences.htm" target="winmain"
+														onclick="rename_banner('Pages','Conferences')">Conferences</a>
+												</li>
+												<li><a href="17_student_organization.htm" target="winmain"
+														onclick="rename_banner('Pages','Student Organization')">Student
+														Organization</a></li>
+												<li><a href="18_licensure_exam.htm" target="winmain"
+														onclick="rename_banner('Pages','Licensure Examination')">Licensure
+														Examination</a></li>
+												<li><a href="19_continuing_prof_development.htm" target="winmain"
+														onclick="rename_banner('Pages','Continuing Professional Development')">Continuing
+														Professional Development</a></li>
+												<li><a href="20_alumni_board_advisers.htm" target="winmain"
+														onclick="rename_banner('Pages','Alumni and Board of Advisers')">Alumni
+														and Board of Advisers</a></li>
+												<li><a href="21_downloadable_form_policies.htm" target="winmain"
+														onclick="rename_banner('Pages','Downloadable Forms and Policies')">Downloadable
+														Forms and Policies</a></li>
+												<li><a href="22_contact_us.htm" target="winmain"
+														onclick="rename_banner('Pages','Contact Us')">Contact Us</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="">DEGREE PROGRAMS<i class="fa fa-chevron-down"></i></a>
+											<ul class="sub-menu">
+												<li><a href="7_degree_programs_undergrad.html" target="winmain"
+														onclick="rename_banner('Degree Programs','Undergraduate Programs')">Undergraduate
+														Programs</a></li>
+												<li><a href="7_degree_programs_graduate.html" target="winmain"
+														onclick="rename_banner('Degree Programs','Graduate Programs')">Graduate
+														Programs</a></li>
+											</ul>
+										</li>
+									</ul>
+									<div class="nav-social-link">
+										<a href="javascript:;"><i class="fa fa-facebook"></i></a>
+										<a href="javascript:;"><i class="fa fa-google-plus"></i></a>
+										<a href="javascript:;"><i class="fa fa-linkedin"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Header END -->
+				</header>
+			</div>
+
+			<div class="flex-item body">
+				<!-- Banner -->
+				<div class="page-content bg-white">
+					<!-- Inner page banner -->
+					<div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner.jpg);">
+						<div class="container" style="height:100%;">
+							<div class="page-banner-entry">
+								<h1 class="text-white" id="banner_name">Vision</h1>
+							</div>
+						</div>
+					</div>
+
+					<!-- Inner page banner END -->
+				</div>
+				<!-- Banner END -->
+
+				<!-- Breadcrumb row -->
+				<div class="breadcrumb-row">
+					<div class="container">
+						<ul class="list-inline">
+							<li id="path_root"><a href="#">Home</a></li>
+							<li id="path_leaf">Vision</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Breadcrumb row END -->
+
+				<!-- Body section -->
+				<div class="external-content">
+					<iframe class="external-content-item" src="1_home_vision.html" name="winmain">
+					</iframe>
+				</div>
+				<!-- Body section END -->
+			</div>
+
+			<div class="flex-item footer">
+				<!-- Footer -->
+				<footer>
+					<div class="footer-top" style="background-image:url(assets/images/footerbg.jpg);">
+						<div class="container">
+							<div class="d-flex align-items-stretch">
+								<div class="pt-logo mr-auto">
+									<a href="index.html"><img src="assets/images/logo.png" style="width: 60%;"
+											alt=""></a>
+								</div>
+								<div class="pt-social-link">
+									<ul class="list-inline m-a0">
+										<li><a href="#" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#" class="btn-link"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="#" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
+									</ul>
+								</div>
+								<div class="pt-btn-join">
+									<a href="#" class="btn">Enroll Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>
+				<!-- Footer END -->
+			</div>
+		</div>
+</body>
+
+</html>

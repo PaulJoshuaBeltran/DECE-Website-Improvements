@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 4 Vertical Tabs</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add Bootstrap JS and jQuery scripts here (if needed) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+	img {
+		height: auto;
+		width: 40%
+	}
+	.search-container {
+	    display: flex;
+		flex-wrap: wrap;
+    }
+	.container.mt-5 {
+		height: 510px;
+		margin-top: 20px !important;
+		flex-direction: column;
+		overflow-y: auto;
+    }
+	.col-md-3 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+	.col-md-9 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+    .nav-tabs {
+	  border: 1px solid black;
+      flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+    }
+	.nav-tabs.flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .nav-tabs .nav-item {
+      width: 100%;
+      text-align: left;
+    }
+    .nav-tabs .nav-link {
+      border-radius: 0;
+    }
+    .tab-content {
+	  border: 1px solid black;
+	  flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+      padding-left: 20px;
+    }
+  </style>
+  <script>
+	function search() {
+	  // Remove all children
+	  const containerDiv = document.getElementById("myTab");
+	  const sort = document.getElementById("sort").value;
+	  while (containerDiv.firstChild) {
+		containerDiv.removeChild(containerDiv.firstChild);
+	  }
+	  // Create tab
+	  if (sort == "normal"){
+		for (var i = 1; i <= 26; i++) {
+		  createTab(i);
+		}
+	  } else if (sort == "reverse"){
+		for (var i = 26; i >= 1; i--) {
+		  createTab(i);
+		}
+	  }
+	}
+	// Event function once HTML is loaded
+	  document.addEventListener("DOMContentLoaded", function() { search(); });
+	function createTab(index) {
+	  const keyword = document.getElementById("keyword").value;
+	  const mode = document.getElementById("mode").value;
+	  const faculty = document.getElementById("faculty" + index.toString()).innerText.toString();
+	  const content = document.getElementById("content" + index.toString()).innerText.toString();
+	  if (keyword == "" || (mode == "faculty" && faculty.toLowerCase().includes(keyword.toLowerCase()))
+			|| (mode == "content" && content.toLowerCase().includes(keyword.toLowerCase()))) {
+				  // Set parent and child parameters
+				  const ulElement = document.getElementById("myTab");
+				  
+				  const liElement = document.createElement("li");
+				  liElement.classList.add("nav-item");
+				  const anchorElement = document.createElement("a");
+				  anchorElement.classList.add("nav-link");
+				  anchorElement.id = "tab"+index.toString()+"-tab";
+				  anchorElement.setAttribute("data-toggle", "tab");
+				  anchorElement.href = "#tab"+index.toString();
+				  anchorElement.role = "tab";
+				  anchorElement.setAttribute("aria-controls", "tab"+index.toString());
+				  anchorElement.setAttribute("aria-selected", "false");
+				  
+				  //const textNode = document.createTextNode("Tab "+index.toString());
+				  const textNode = document.createTextNode(document.getElementById("faculty" + index.toString()).innerText.toString());
+				  
+				  // Settle parents and their children
+				  anchorElement.appendChild(textNode);
+				  liElement.appendChild(anchorElement);
+				  ulElement.appendChild(liElement);
+	  }
+	}
+  </script>
+</head>
+<body>
+  <div class="container mt-5" style="border: 1px solid black;">
+    <div class="row">
+	  <div class="search-container">
+		<p style="text-indent:10px; margin-top:10px;">
+			SEARCH: (a) Keyword: <INPUT id="keyword" NAME = "name" TYPE = "text">
+			(b) Mode: <select id="mode" name="mode">
+			  <option value="faculty">Award Name</option>
+			  <option value="content">Award Content</option>
+			</select>
+			(c) Sort: <select id="sort" name="sort">
+			  <option value="normal">Normal</option>
+			  <option value="reverse">Reverse</option>
+			</select>
+			<input type="button" value="Search" onclick="search()">
+		</p>
+	  </div>
+	  <p style="margin-right:1000px; margin-bottom: -70px;"></p>
+	<!-- Vertical Tabs -->
+      <div class="col-md-3">
+        <ul class="nav nav-tabs flex-nowrap" id="myTab" role="tablist">
+        </ul>
+      </div>
+	  <!-- Tab Content -->
+      <div class="col-md-9">
+        <div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+				<br><h4 id="faculty1">[FACULTY] Research Recognition Awards</h4>
+				<img src="assets/images/awards_recognition/rra1.png">
+				<img src="assets/images/awards_recognition/rra3.jpg"><br>
+				<img src="assets/images/awards_recognition/rra2.jpg"><br>
+				<p id="content1">Research Interest: Control Systems, Optimization, Information System</p>
+			</div>
+			<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+				<br><h4 id="faculty2">[FACULTY] 9th Lasallian Pillars Awards</h4>
+				<p id="content2"><b>Outstanding Animo Space Course – Department Level</b><br>
+					FNDMATH -Engr. Jerwin Go and Dr. Joseph Ortenero<br>
+					<br>
+					<b>Outstanding Animo Space Course – College Level</b><br>
+					IMEMARK -Engr. Joy Mari Bautista and Engr. Karl Benedict Ong<br>
+					<br>
+					<b>Student Search For Outstanding Teachers – for GCOE</b><br>
+					Engr. Eric Siy<br>
+					<br>
+					<b>Most Productive Department in Research – Big Department Category</b><br>
+					Mechanical Engineering Department<br>
+					<br>
+					<b>Most Productive Department in Research – Small Department Category</b><br>
+					Manufacturing Engineering and Management Department<br>
+					<br>
+					<b>St. Jean-Baptiste de La Salle Pillar of Lasallian Excellence Award</b><br>
+					Prof. Alvin Culaba
+				</p>
+			</div>
+			<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+				<br><h4 id="faculty3">[FACULTY] Philippine National Academy of Science and Technology Awards</h4>
+				<img src="assets/images/awards_recognition/pnasta1.jpg">
+				<img src="assets/images/awards_recognition/pnasta2.jpg"><br>
+				<img src="assets/images/awards_recognition/pnasta3.jpg"><br>
+				<p id="content3">Research Interest: Machine Vision, Signal Processing, Behavioral Pattern Analysis, Wireless Communication, Intelligent System</p>
+			</div>
+			<div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+				<br><h4 id="faculty4">[FACULTY] Top Asian Scientists</h4>
+				<img src="assets/images/awards_recognition/tas1-.png">
+				<img src="assets/images/awards_recognition/tas2.png"><br>
+				<img src="assets/images/awards_recognition/tas3.png"><br>
+				<p id="content4">Research Interest: Communication Systems, OFDM, Wireless Technology</p>
+			</div>
+			<div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+				<br><h4 id="faculty5">[FACULTY] Biotechnology Awards</h4>
+				<img src="assets/images/awards_recognition/ba3.png"><br>
+				<img src="assets/images/awards_recognition/ba1-768x382.jpg"><br>
+				<img src="assets/images/awards_recognition/ba2.png"><br>
+				<p id="content5">Research Interest: Computer Vision, Image Processing, Computational Intelligence, Algorithm Development</p>
+			</div>
+			<div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+				<br><h4 id="faculty6">[FACULTY] Agos ng Pag-asa Awards</h4>
+				<p id="content6">Agos ng Pagasa acknowledges individuals or organizations with outstanding contributions to environmental protection and embodies the better world mindset of LWC. According to corporation, “The wastewater-to-fertilizer study is a good example of turning waste into [a] valu[able] resource which is very much aligned in our sustainability goals.”<br>
+				<br>
+				– World Water Day Awards, March 22, 2021</p><br>
+				<img src="assets/images/awards_recognition/apa1.jpg"><br>
+				<img src="assets/images/awards_recognition/apa2.png">
+			</div>
+			<div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
+				<br><h4 id="faculty7">[FACULTY] ASEP Outstanding Achievement Awards</h4>
+				<img src="assets/images/awards_recognition/asep1.jpg">
+				<img src="assets/images/awards_recognition/asep2.jpg">
+				<img src="assets/images/awards_recognition/asep3.jpg"><br>
+				<p id="content7">Research Interest: Signal Processing, Machine Vision, Mobile Application, Data Mining</p>
+			</div>
+			<div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
+				<br><h4 id="faculty8">[FACULTY] CE Faculty Awards</h4>
+				<img src="assets/images/awards_recognition/ce2.png"><br>
+				<img src="assets/images/awards_recognition/ce1-768x402.jpg"><br>
+				<p id="content8">Specialization: Computational Intelligence, Embedded Systems, Computer Architecture, Computer Vision</p>
+			</div>
+			<div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
+				<br><h4 id="faculty9">[FACULTY] ISE Best Paper Awards</h4>
+				<img src="assets/images/awards_recognition/ise1-768x399.jpg"><br>
+				<img src="assets/images/awards_recognition/ise2.jpg"><br>
+				<img src="assets/images/awards_recognition/ise3-768x329.jpg"><br>
+				<p id="content9">Research Interest: Wireless Sensor Networks, Computer Networks, Internet of Things</p>
+			</div>
+			<div class="tab-pane fade" id="tab10" role="tabpanel" aria-labelledby="tab10-tab">
+				<br><h4 id="faculty10">[FACULTY] New Externally-Funded Projects</h4>
+				<img src="assets/images/awards_recognition/nefp1.png">
+				<img src="assets/images/awards_recognition/nefp6.png"><br>
+				<img src="assets/images/awards_recognition/nefp3.png">
+				<img src="assets/images/awards_recognition/nefp4.png"><br>
+				<img src="assets/images/awards_recognition/nefp5.png">
+				<img src="assets/images/awards_recognition/nefp2.png"><br>
+				<p id="content10">Research Interest:  Vehicular Communications, Control Systems, Indoor Positioning/Localization Systems,  Intelligent Transportation Systems</p>
+			</div>
+			<div class="tab-pane fade" id="tab11" role="tabpanel" aria-labelledby="tab11-tab">
+				<br><h4 id="faculty11">[FACULTY] Launching of Spin-Off Companies</h4>
+				<img src="assets/images/awards_recognition/lsc1.png">
+				<img src="assets/images/awards_recognition/lsc2.png"><br>
+				<p id="content11">Research Interest: Communication Systems, Broadcast Engineering, Antenna Design</p>
+			</div>
+			<div class="tab-pane fade" id="tab12" role="tabpanel" aria-labelledby="tab12-tab">
+				<br><h4 id="faculty12">[STUDENT] Quiz Bee Champions AY 2020-2021</h4>
+				<img src="assets/images/awards_recognition/qbc1.jpg"><br>
+				<img src="assets/images/awards_recognition/qbc2.jpg"><br>
+				<img src="assets/images/awards_recognition/qbc3.jpg"><br>
+				<p id="content12">Research Interest: Radio Channel Measurements and Characterization, Telecommunications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab13" role="tabpanel" aria-labelledby="tab13-tab">
+				<br><h4 id="faculty13">[STUDENT] ARAW Awards</h4>
+				<img src="assets/images/awards_recognition/araw1.jpg">
+				<img src="assets/images/awards_recognition/araw2.jpg"><br>
+				<p id="content13">Research Interest: Power Line Communications, IC Design, Power Systems, Embedded System</p>
+			</div>
+			<div class="tab-pane fade" id="tab14" role="tabpanel" aria-labelledby="tab14-tab">
+				<br><h4 id="faculty14">[STUDENT] Magsaysay Future Engineers/Technologists Awards</h4>
+				<img src="assets/images/awards_recognition/mfe1.jpg">
+				<img src="assets/images/awards_recognition/mfe2.jpg"><br>
+				<p id="content14">Research Interest: DSP, Solid State Physics, Conducting Polymers, Instrumentation, Energy</p>
+			</div>
+			<div class="tab-pane fade" id="tab15" role="tabpanel" aria-labelledby="tab15-tab">
+				<br><h4 id="faculty15">[STUDENT] Shell Eco-marathon</h4>
+				<img src="assets/images/awards_recognition/shell1.png"><br>
+				<img src="assets/images/awards_recognition/shell2.png">
+				<img src="assets/images/awards_recognition/shell3.jpg"><br>
+				<p id="content15">Research Interest: Biomedical Devices, Digital Signal Processing, Computational Intelligence</p>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

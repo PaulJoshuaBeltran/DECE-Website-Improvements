@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 4 Vertical Tabs</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add Bootstrap JS and jQuery scripts here (if needed) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+	.search-container {
+	    display: flex;
+		flex-wrap: wrap;
+    }
+	.container.mt-5 {
+		height: 510px;
+		margin-top: 20px !important;
+		flex-direction: column;
+		overflow-y: auto;
+    }
+	.col-md-3 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+	.col-md-9 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+    .nav-tabs {
+	  border: 1px solid black;
+      flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+    }
+	.nav-tabs.flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .nav-tabs .nav-item {
+      width: 100%;
+      text-align: left;
+    }
+    .nav-tabs .nav-link {
+      border-radius: 0;
+    }
+    .tab-content {
+	  border: 1px solid black;
+	  flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+      padding-left: 20px;
+    }
+  </style>
+  <script>
+	function search() {
+	  // Remove all children
+	  const containerDiv = document.getElementById("myTab");
+	  const sort = document.getElementById("sort").value;
+	  while (containerDiv.firstChild) {
+		containerDiv.removeChild(containerDiv.firstChild);
+	  }
+	  // Create tab
+	  if (sort == "normal"){
+		for (var i = 1; i <= 26; i++) {
+		  createTab(i);
+		}
+	  } else if (sort == "reverse"){
+		for (var i = 26; i >= 1; i--) {
+		  createTab(i);
+		}
+	  }
+	}
+	// Event function once HTML is loaded
+	  document.addEventListener("DOMContentLoaded", function() { search(); });
+	function createTab(index) {
+	  const keyword = document.getElementById("keyword").value;
+	  const mode = document.getElementById("mode").value;
+	  const faculty = document.getElementById("faculty" + index.toString()).innerText.toString();
+	  const content = document.getElementById("content" + index.toString()).innerText.toString();
+	  if (keyword == "" || (mode == "faculty" && faculty.toLowerCase().includes(keyword.toLowerCase()))
+			|| (mode == "content" && content.toLowerCase().includes(keyword.toLowerCase()))) {
+				  // Set parent and child parameters
+				  const ulElement = document.getElementById("myTab");
+				  
+				  const liElement = document.createElement("li");
+				  liElement.classList.add("nav-item");
+				  const anchorElement = document.createElement("a");
+				  anchorElement.classList.add("nav-link");
+				  anchorElement.id = "tab"+index.toString()+"-tab";
+				  anchorElement.setAttribute("data-toggle", "tab");
+				  anchorElement.href = "#tab"+index.toString();
+				  anchorElement.role = "tab";
+				  anchorElement.setAttribute("aria-controls", "tab"+index.toString());
+				  anchorElement.setAttribute("aria-selected", "false");
+				  
+				  //const textNode = document.createTextNode("Tab "+index.toString());
+				  const textNode = document.createTextNode(document.getElementById("faculty" + index.toString()).innerText.toString());
+				  
+				  // Settle parents and their children
+				  anchorElement.appendChild(textNode);
+				  liElement.appendChild(anchorElement);
+				  ulElement.appendChild(liElement);
+	  }
+	}
+  </script>
+</head>
+<body>
+  <div class="container mt-5" style="border: 1px solid black;">
+    <div class="row">
+	  <div class="search-container">
+		<p style="text-indent:10px; margin-top:10px;">
+			SEARCH: (a) Keyword: <INPUT id="keyword" NAME = "name" TYPE = "text">
+			(b) Mode: <select id="mode" name="mode">
+			  <option value="faculty">Researcher Name</option>
+			  <option value="content">Research Interest</option>
+			</select>
+			(c) Sort: <select id="sort" name="sort">
+			  <option value="normal">Normal</option>
+			  <option value="reverse">Reverse</option>
+			</select>
+			<input type="button" value="Search" onclick="search()">
+		</p>
+	  </div>
+	  <p style="margin-right:1000px; margin-bottom: -70px;"></p>
+	<!-- Vertical Tabs -->
+      <div class="col-md-3">
+        <ul class="nav nav-tabs flex-nowrap" id="myTab" role="tablist">
+        </ul>
+      </div>
+	  <!-- Tab Content -->
+      <div class="col-md-9">
+        <div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+				<br><h4 id="faculty1">Prof. Dr. Aaron Don Africa</h4>
+				<p id="content1">Research Interest: Control Systems, Optimization, Information System</p>
+			</div>
+			<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+				<br><h4 id="faculty2">Prof. Dr. Argel Bandala</h4>
+				<p id="content2">Research Interest:  Swarm Robotics, Unmanned Aerial Vehicles, Vision System</p>
+			</div>
+			<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+				<br><h4 id="faculty3">Prof. Dr. Reggie Gustilo</h4>
+				<p id="content3">Research Interest: Machine Vision, Signal Processing, Behavioral Pattern Analysis, Wireless Communication, Intelligent System</p>
+			</div>
+			<div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+				<br><h4 id="faculty4">Dr. Gerald Arada</h4>
+				<p id="content4">Research Interest: Communication Systems, OFDM, Wireless Technology</p>
+			</div>
+			<div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+				<br><h4 id="faculty5">Dr. Melvin Cabatuan</h4>
+				<p id="content5">Research Interest: Computer Vision, Image Processing, Computational Intelligence, Algorithm Development</p>
+			</div>
+			<div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+				<br><h4 id="faculty6">Dr. Jay Robert del Rosario</h4>
+				<p id="content6">Research Interest: Mechatronics, Computer Systems Architecture, Webpage Design and Development, Software Engineering, Industrial Automation, Computational Intelligence</p>
+			</div>
+			<div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
+				<br><h4 id="faculty7">Prof. Dr. Edwin Sybingco</h4>
+				<p id="content7">Research Interest: Signal Processing, Machine Vision, Mobile Application, Data Mining</p>
+			</div>
+			<div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
+				<br><h4 id="faculty8">Dr. Cesar Llorente</h4>
+				<p id="content8">Specialization: Computational Intelligence, Embedded Systems, Computer Architecture, Computer Vision</p>
+			</div>
+			<div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
+				<br><h4 id="faculty9">Dr. Melchizedek Alipio</h4>
+				<p id="content9">Research Interest: Wireless Sensor Networks, Computer Networks, Internet of Things</p>
+			</div>
+			<div class="tab-pane fade" id="tab10" role="tabpanel" aria-labelledby="tab10-tab">
+				<br><h4 id="faculty10">Prof. Dr. Elmer Magsino</h4>
+				<p id="content10">Research Interest:  Vehicular Communications, Control Systems, Indoor Positioning/Localization Systems,  Intelligent Transportation Systems</p>
+			</div>
+			<div class="tab-pane fade" id="tab11" role="tabpanel" aria-labelledby="tab11-tab">
+				<br><h4 id="faculty11">Prof. Dr. Gerino Mappatao</h4>
+				<p id="content11">Research Interest: Communication Systems, Broadcast Engineering, Antenna Design</p>
+			</div>
+			<div class="tab-pane fade" id="tab12" role="tabpanel" aria-labelledby="tab12-tab">
+				<br><h4 id="faculty12">Prof. Dr. Lawrence Materum</h4>
+				<p id="content12">Research Interest: Radio Channel Measurements and Characterization, Telecommunications Engineering</p>
+			</div>
+			<div class="tab-pane fade" id="tab13" role="tabpanel" aria-labelledby="tab13-tab">
+				<br><h4 id="faculty13">Dr. Ann Dulay</h4>
+				<p id="content13">Research Interest: Power Line Communications, IC Design, Power Systems, Embedded System</p>
+			</div>
+			<div class="tab-pane fade" id="tab14" role="tabpanel" aria-labelledby="tab14-tab">
+				<br><h4 id="faculty14">Dr. Enrique Manzano</h4>
+				<p id="content14">Research Interest: DSP, Solid State Physics, Conducting Polymers, Instrumentation, Energy</p>
+			</div>
+			<div class="tab-pane fade" id="tab15" role="tabpanel" aria-labelledby="tab15-tab">
+				<br><h4 id="faculty15">Dr. Francis Roy Navea</h4>
+				<p id="content15">Research Interest: Biomedical Devices, Digital Signal Processing, Computational Intelligence</p>
+			</div>
+			<div class="tab-pane fade" id="tab16" role="tabpanel" aria-labelledby="tab16-tab">
+				<br><h4 id="faculty16">Dr. Carlo Noel Ochotorena</h4>
+				<p id="content16">Research Interest: Image Processing, Computational Photography, Sparse Representation</p>
+			</div>
+			<div class="tab-pane fade" id="tab17" role="tabpanel" aria-labelledby="tab17-tab">
+				<br><h4 id="faculty17">Dr. Roderick Yap</h4>
+				<p id="content17">Research Interest: Microelectronics, VLSI Design</p>
+			</div>
+			<div class="tab-pane fade" id="tab18" role="tabpanel" aria-labelledby="tab18-tab">
+				<br><h4 id="faculty18">Engr. Alexander Abad</h4>
+				<p id="content18">Research Interest: IC Design, Machine Vision, Mixed Signal Electronics</p>
+			</div>
+			<div class="tab-pane fade" id="tab19" role="tabpanel" aria-labelledby="tab19-tab">
+				<br><h4 id="faculty19">Engr. Leonard Ambata</h4>
+				<p id="content19">Research Interest: Unmanned Aerial Vehicles</p>
+			</div>
+			<div class="tab-pane fade" id="tab20" role="tabpanel" aria-labelledby="tab20-tab">
+				<br><h4 id="faculty20">Engr. Ana Antoniette Illahi</h4>
+				<p id="content20">Research Interest: Intelligent Systems, Image Processing, Internet of Things</p>
+			</div>
+			<div class="tab-pane fade" id="tab21" role="tabpanel" aria-labelledby="tab21-tab">
+				<br><h4 id="faculty21">Engr. John Anthony Jose</h4>
+				<p id="content21">Research Interest: Computer Vision, Machine Learning</p>
+			</div>
+			<div class="tab-pane fade" id="tab22" role="tabpanel" aria-labelledby="tab22-tab">
+				<br><h4 id="faculty22">Engr. Dino Dominic Ligutan</h4>
+				<p id="content22">Research Interest: Robotics, Embedded Systems, Intelligent Systems</p>
+			</div>
+			<div class="tab-pane fade" id="tab23" role="tabpanel" aria-labelledby="tab23-tab">
+				<br><h4 id="faculty23">Engr. Jose Martin Maningo</h4>
+				<p id="content23">Research Interest: Swarm Robotics, Intelligent Systems</p>
+			</div>
+			<div class="tab-pane fade" id="tab24" role="tabpanel" aria-labelledby="tab24-tab">
+				<br><h4 id="faculty24">Engr. Armie Pakzad</h4>
+				<p id="content24">Research Interest: Television Whitespace, Reinforcement Learning, Microcontroller</p>
+			</div>
+			<div class="tab-pane fade" id="tab25" role="tabpanel" aria-labelledby="tab25-tab">
+				<br><h4 id="faculty25">Engr. Mark Lester Padilla</h4>
+				<p id="content25">Research Interest: Robotics</p>
+			</div>
+			<div class="tab-pane fade" id="tab26" role="tabpanel" aria-labelledby="tab26-tab">
+				<br><h4 id="faculty26">Engr. Maria Antonette Roque</h4>
+				<p id="content26">Research Interest: Digital Systems Design, Networking and Interfacing, Database Systems, Electronic Circuit Design, Information and Communications Technology</p>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

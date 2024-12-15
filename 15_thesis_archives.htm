@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 4 Vertical Tabs</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add Bootstrap JS and jQuery scripts here (if needed) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+	img {
+		height: auto;
+		width: 40%
+	}
+	.search-container {
+	    display: flex;
+		flex-wrap: wrap;
+    }
+	.container.mt-5 {
+		height: 510px;
+		margin-top: 20px !important;
+		flex-direction: column;
+		overflow-y: auto;
+    }
+	.col-md-3 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+	.col-md-9 {
+		padding-left: 2px !important;
+		padding-right: 2px !important;
+		max-height: 450px;
+		overflow-y: auto;
+	}
+    .nav-tabs {
+	  border: 1px solid black;
+      flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+    }
+	.nav-tabs.flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .nav-tabs .nav-item {
+      width: 100%;
+      text-align: left;
+    }
+    .nav-tabs .nav-link {
+      border-radius: 0;
+    }
+    .tab-content {
+	  border: 1px solid black;
+	  flex-direction: column;
+	  max-height: 450px;
+	  overflow-y: auto;
+      padding-left: 20px;
+    }
+  </style>
+  <script>
+	function search() {
+	  // Remove all children
+	  const containerDiv = document.getElementById("myTab");
+	  const sort = document.getElementById("sort").value;
+	  while (containerDiv.firstChild) {
+		containerDiv.removeChild(containerDiv.firstChild);
+	  }
+	  // Create tab
+	  if (sort == "normal"){
+		for (var i = 1; i <= 48; i++) {
+		  createTab(i);
+		}
+	  } else if (sort == "reverse"){
+		for (var i = 48; i >= 1; i--) {
+		  createTab(i);
+		}
+	  }
+	}
+	// Event function once HTML is loaded
+	  document.addEventListener("DOMContentLoaded", function() { search(); });
+	function createTab(index) {
+	  const keyword = document.getElementById("keyword").value;
+	  const mode = document.getElementById("mode").value;
+	  const faculty = document.getElementById("faculty" + index.toString()).innerText.toString();
+	  const content = document.getElementById("content" + index.toString()).innerText.toString();
+	  if (keyword == "" || (mode == "faculty" && faculty.toLowerCase().includes(keyword.toLowerCase()))
+			|| (mode == "content" && content.toLowerCase().includes(keyword.toLowerCase()))) {
+				  // Set parent and child parameters
+				  const ulElement = document.getElementById("myTab");
+				  
+				  const liElement = document.createElement("li");
+				  liElement.classList.add("nav-item");
+				  const anchorElement = document.createElement("a");
+				  anchorElement.classList.add("nav-link");
+				  anchorElement.id = "tab"+index.toString()+"-tab";
+				  anchorElement.setAttribute("data-toggle", "tab");
+				  anchorElement.href = "#tab"+index.toString();
+				  anchorElement.role = "tab";
+				  anchorElement.setAttribute("aria-controls", "tab"+index.toString());
+				  anchorElement.setAttribute("aria-selected", "false");
+				  
+				  //const textNode = document.createTextNode("Tab "+index.toString());
+				  const textNode = document.createTextNode(document.getElementById("faculty" + index.toString()).innerText.toString());
+				  
+				  // Settle parents and their children
+				  anchorElement.appendChild(textNode);
+				  liElement.appendChild(anchorElement);
+				  ulElement.appendChild(liElement);
+	  }
+	}
+  </script>
+</head>
+<body>
+  <div class="container mt-5" style="border: 1px solid black;">
+    <div class="row">
+	  <div class="search-container">
+		<p style="text-indent:10px; margin-top:10px;">
+			SEARCH: (a) Keyword: <INPUT id="keyword" NAME = "name" TYPE = "text">
+			(b) Mode: <select id="mode" name="mode">
+			  <option value="faculty">Thesis Name</option>
+			  <option value="content">Thesis Content</option>
+			</select>
+			(c) Sort: <select id="sort" name="sort">
+			  <option value="normal">Normal</option>
+			  <option value="reverse">Reverse</option>
+			</select>
+			<input type="button" value="Search" onclick="search()">
+		</p>
+	  </div>
+	  <p style="margin-right:1000px; margin-bottom: -70px;"></p>
+	<!-- Vertical Tabs -->
+      <div class="col-md-3">
+        <ul class="nav nav-tabs flex-nowrap" id="myTab" role="tablist">
+        </ul>
+      </div>
+	  <!-- Tab Content -->
+      <div class="col-md-9">
+        <div class="tab-content" id="myTabContent">
+			<!-- Thesis 2013 -->
+			<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+				<br><h4 id="faculty1">A Microcontroller-Based Automated Weight Monitoring System For Class One Vehicles (2013)</h4>
+				<p id="content1">Identifier: CSG-01-1213-02<br>
+				Members: Barco, Christian Erasquin, Justine Roy Geronimo, Mark Dommel<br>
+				Abstract:<br>
+				The study aims to monitor the weight of class one vehicles and evaluate if the vehicle is beyond its gross vehicle weight. Class one vehicles are subdivided into four main subclasses to further reduce the weight limit of the different types of vehicles under class one. The proponents have used the PIC16F877A Microcontroller with various sensors. The use of ultrasonic distance sensor was used to determine the height for the differentiation of the subclass while four load cells were used to acquire the weight. The Analog-to-Digital (ADC) of the microcontroller was used to convert the analog signals from the load cells to output the weight of the vehicle. The actual weight, reference weight, subclass and remarks are all outputted in a display board for the driver to see.<br>
+				Correspondence:<br>
+				Ms. Donabel DeVeas<br>
+				deveasd@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+				<br><h4 id="faculty2">Automobile Warning and Detection System Utilizing Radar and an LCD Interface (2013)</h4>
+				<p id="content2">Identifier: CSG-01-1213-03<br>
+				Members: Chua Yap, Jack De Guzman, Robert Tungul, Justin Mikhail<br>
+				Abstract:<br>
+				The study aims to monitor the weight of class one vehicles and evaluate if the vehicle is beyond its gross vehicle weight. Class one vehicles are subdivided into four main subclasses to further reduce the weight limit of the different types of vehicles under class one. The proponents have used the PIC16F877A Microcontroller with various sensors. The use of ultrasonic distance sensor was used to determine the height for the differentiation of the subclass while four load cells were used to acquire the weight. The Analog-to-Digital (ADC) of the microcontroller was used to convert the analog signals from the load cells to output the weight of the vehicle. The actual weight, reference weight, subclass and remarks are all outputted in a display board for the driver to see.<br>
+				Correspondence:<br>
+				Ms. Antonette Roque<br>
+				antonette.roque@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+				<br><h4 id="faculty3">VIPROCER: Video Processing For Face Recognition and Identification Using CCTV Camera (2013)</h4>
+				<p id="content3">Identifier: DSP-01-1213-01<br>
+				Members: Alba, Johanne Jeremiah Enero, Junijuin Ramirez, Razzel Alan Vilaga, Francis Irvin Villareal, Jomil Ivan<br>
+				Abstract:<br>
+				This paper presents a Closed Circuit Television (CCTV) camera using video processing with LabVIEW as the programming interface and mySQL as the database. At most, three persons are detected at a time. The identity of the face, the time it was detected, and the time it left the viewing scope of the camera are recorded in tabular form.<br>
+				Correspondence:<br>
+				Melvin Cabatuan<br>
+				melvin.cabatuan@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+				<br><h4 id="faculty4">A Customer Profiling System Using Image Processing For Stock Management In Apparel Stores (2013)</h4>
+				<p id="content4">Identifier: DSP-01-1213-02<br>
+				Members: Calderon, Arianne Cupino, Einer John Dimaapi, Sandra Joyce Saret, Lady Sheila<br>
+				Abstract:<br>
+				Customer profiling is a marketing strategy that helps in identifying and knowing the customers’ needs and demands. Customer profiling is based on building common definitions that groups of people will fit into. Through customer profiling, business concepts can be projected, and be assessed if it will meet the market’s demands. Also, identifying the target market through its demographics, and buying and spending habits, business owners will be able to project and implement their marketing and advertising efforts more effectively. This paper aims to develop a customer profiling system using image processing to suggest a stock management strategy for an apparel store. LabVIEW was used as the platform for the implementation of the customer profiling system. The Vision Builder for Automated Inspection (VBAI), an image processing toolbox of LabVIEW, was used to implement the image processing. The system that was developed operates offline. For this study, the experimental and reliability tests were done in a controlled environment. Two parameters were put into consideration â€“ the gender identification and the shirt size classification. One hundred test subjects participated in this study, having forty females and sixty males. Considering the said parameters independently, the gender identification, and the shirt size classification have demonstrated a system reliability of 94% and 95% respectively. The results showed that the system worked at a system reliability of 94% for both gender identification and shirt size classification.<br>
+				Correspondence:<br>
+				Edwin Sybingco<br>
+				edwin.sybingco@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+				<br><h4 id="faculty5">Design and Implementation of an Interleaved Switched Capacitor DC-to-DC Buck Converter on a 0.18 u mm CMOS Process (2013)</h4>
+				<p id="content5">Identifier: ESG-01-1213-03<br>
+				Members: Lacida, Earl Kenneth Marica, Grace Ann Perocho, Joshua James Tan-Afuan, Karl Ivan Verzosa, Katrina<br>
+				Abstract:<br>
+				DC-DC converters that utilize inductors and capacitors to increase or decrease the voltage level have been replaced with switched capacitor arrays that consist of switches and capacitors. Switched capacitor arrays consume relatively smaller spaces within an integrated circuit while resulting with higher efficiencies. Moreover, this configuration broadens the circuit’s bandwidth and also improves system reliability. This research focuses on the design of an interleaved switched capacitor DC-DC buck converter that has an input ranging from 1.4 volts to 1.8 volts, an output a voltage of 1 volt, a maximum output current of 1 milliampere, and a maximum efficiency of 72.266% at an input of 1.4 volts at the SS process corner. The worst load and line regulation of the circuit were characterized as 0.642% and 10.956%, respectively. Also, the design was simulated using a 10 kHz, 1.8 MHz, 3.6 MHz, and 7.2 MHz clock. The biggest transistor used in the circuit has a width of 20 Î¼m and a length of 2.5 Î¼m. There are 32 interleaved switched capacitor arrays whereby each utilizes two clock phases. The proponents implemented the design in the 0.18 micron CMOS technology in the Synopsys tool.<br>
+				Correspondence:<br>
+				Ms. Donabel DeVeas<br>
+				deveasd@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6-tab">
+				<br><h4 id="faculty6">Implementation of a 1V Temperature Sensing IC on a 0.18umm CMOS Process (2013)</h4>
+				<p id="content6">Identifier: ESG-01-1213-06<br>
+				Members: Briones, Juan Gabriel Dalisay, Rachel Marie Marasigan, Gino Pascasio, Jan Bryan Ponce, Joseph<br>
+				Abstract:<br>
+				This study focused on the design and characterization of a Temperature Sensor with an 8-bit Low-Voltage Incremental Delta-Sigma Analog-to-Digital Converter (ADC). The Proportional to Absolute Temperature (PTAT) part of an All-MOS bandgap voltage reference was utilized as the Temperature Sensor. The design was implemented using 0.18um CMOS Technology. The temperature sensor and voltage reference operates using the typical supply voltage of 2.5V while the ADC part operates on a low voltage 1-Volt supply. The circuit design can operate from 0ºC to 85ºC with a temperature coefficient of 0.933mV/ºC or 2.5LSB/ºC and was implemented and simulated using Synopsys Tools.<br>
+				Correspondence:<br>
+				Alexander Abad<br>
+				alexander.abad@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
+				<br><h4 id="faculty7">Design and Implementation of an Automated Bagging and Checkout Counter System (2013)</h4>
+				<p id="content7">Identifier: ESG-01-1213-08<br>
+				Members: Abcede, Lendl Nikolo Hernando, Paul Alexis Kamdon, Jason Chee Marquez, Ian Christopher Sim, John Patrick<br>
+				Abstract:<br>
+				In supermarkets, there is a huge margin of inaccuracy that can be attributed to human error. This includes the possibility of incorrect price, loss of goods and unreliable sorting of goods. Let’s also take into account the amount of manpower and labor that goes into the process. The group’s project is an insight into implementing an automated checkout counter and bagging system to reduce the margin of error. The project targets to present a more efficient checkout system in supermarkets by decreasing the amount of manpower. Information on how the automated bagging and checkout counter is built and how it works is presented.<br>
+				Correspondence:<br>
+				Aaron Don Africa<br>
+				aaron.africa@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
+				<br><h4 id="faculty8">Fuzzy Logic Controller for a DC-DC Converter (2013)</h4>
+				<p id="content8">Identifier: ESG-01-1213-09<br>
+				Members: Aragon, Erwin John Barlis, Robin Andrew Bernaldo, Rey Emmanuel Cabarle, Luis Eduardo Maranan, Manzell<br>
+				Abstract:<br>
+				This thesis focuses on creating and implementing a Fuzzy Logic-based controller as a control system to regulate the output of a DC-DC Boost Converter. An algorithm is developed based on a set of rules based on human expertise, linguistics and understanding. Fuzzy sets and triangular membership functions are used to fuzzify crisp inputs coming from a feedback source. The fuzzified inputs will then undergo a fuzzy inference system, which is a set of rules used in calculations determining the crisp output. The crisp value in this thesis is the duty cycle, which controls the switching of the power transistor. Pulse Width Modulation is used to dictate the value of the duty cycle which will also determine the boosted output voltage. This fuzzy logic algorithm will be implemented on a Field Programmable Gate Array (FPGA). The purpose of this thesis is to compare the performance of the Fuzzy Logic controller with a commercial Regulating Pulse Width Modulator integrated circuit used in Switching Regulators, and to prove that non-model based systems are robust and adaptive in contrast with model-based systems.<br>
+				Correspondence:<br>
+				Roderick Yap<br>
+				roderick.yap@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
+				<br><h4 id="faculty9">Microcontroller-Based Dextrose Stand with Infrared Proximity Detection for Patient Use in Hospitals (2013)</h4>
+				<p id="content9">Identifier: ESG-01-1213-11<br>
+				Members: Francisco, Manuel Luis III Tupas, Cloud Reyes, Paul Benedict Reotutar, James Homer<br>
+				Abstract:<br>
+				This study aims to utilize the concept of automation to improve the convenience of patients who are taking ivy fluids who may need to walk short or long distances by creating a dextrose stand that will follow the patient. Five Sharp GP2Y0A2YK infrared proximity sensors capable of accurate detection were used to sense whether the patient turned left or right, and moved or stopped. Individual analog output signal pins of the five sensors are all connected to a Gizduino X microcontroller that does the decision-making. A servo motor was used for steering the front wheels while two DC motors were attached to the rear wheels for the forward movement of the dextrose stand. Lastly, a battery indicator with five LEDs will also be included in the system to inform the user if the battery needs charging.<br>
+				Correspondence:<br>
+				Ms. Donabel DeVeas<br>
+				deveasd@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab10" role="tabpanel" aria-labelledby="tab10-tab">
+				<br><h4 id="faculty10">Indoor Navigation System Using Quick Response Code Technology (2013)</h4>
+				<p id="content10">Identifier: ESG-01-1213-12<br>
+				Members: Balbuena, Jerson Efer Barcenilla, Gerard Ian Barrion, Bryan Kenneth Nuestro, Angelo Joshua Santos, Michelle Louise<br>
+				Abstract:<br>
+				This study focused on the use of Quick Response (QR) codes for navigation and delivery of a mobile robot, and the usage of Raspberry Pi as the Central Processing Unit of the system. With a web application which can command the robot to navigate and deliver to a certain location identified by QR codes and stored in a database, the Raspberry Pi reads this command and carries out the instructions of a Python-based program by performing arithmetic, logical, and input/output operations of the system for the mobile robot to successfully navigate and deliver. Through the cameras connected to it, the Raspberry Pi decodes the QR codes and determines if there is a match between the data sent by the web application and the scanned value. Whether there is a match or none, the Raspberry Pi communicates to the PIC16F877A microcontroller through its General-Purpose Input/Output (GPIO) pins for the movement of the robot. The GPIO pins, which will give an output of 3.3 volts to supply the input ports of the microcontroller, will be determined and dependent on the sensor readings connected to and sent by the microcontroller to the other GPIO pins as well. Overall, the Raspberry Pi and the scanned QR Code values, with the use of a web application and sensor readings, control and dictate the mobile robot’s movement for navigation and the Tormax motor’s movement for delivery.<br>
+				Correspondence:<br>
+				Thesis Coordinator<br>
+				ece.thesis@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab11" role="tabpanel" aria-labelledby="tab11-tab">
+				<br><h4 id="faculty11">Design and Implementation of a 1 Volt Low Dropout Voltage Regulator on a 0.18 umm CMOS process driving a Clock Circuit Load (2013)</h4>
+				<p id="content11">Identifier: ESG-01-1213-15<br>
+				Members: Lim, Jacqueline Maye Maranan, Jian Ramark So, Austin<br>
+				Abstract:<br>
+				The main purpose of this research is to design a low dropout voltage regulator (LDO) on 0.18Î¼m CMOS process with a maximum dropout of 500mV at a maximum load current of 500uA current. The specifications of this block are based on its application to regulate the clock circuit of a smart wire chip, which serves as the load. The clock circuit load mentioned above ranges from 100KHz to 7.2MHz. The main component of this block is a folded cascode amplifier that functions as an error amplifier with a PMOS pass transistor that operates mainly at its linear region to function as a resistive device. The error amplifier with a reference value of 0.8V that outputs a specific value to drive the gate of the pass transistor to produce a specific resistance value between the drain and the source to correct the output voltage value to 1V not exceeding the allowable ripple voltage of 100mV given the input voltage of 1.5V with 100mV ripple. The design satisfies the above conditions on all process corners and is implemented using the SYNOPSYS custom designer schematic and layout tool. The circuit has an efficiency of 34.23%, a load regulation of 1.1%, and an accuracy of 97.90% all measured at typical- typical. These parameters are also measured in pre-layout, post-layout on all process corners.<br>
+				Correspondence:<br>
+				Ms. Ann Dulay<br>
+				ann.dulay@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab12" role="tabpanel" aria-labelledby="tab12-tab">
+				<br><h4 id="faculty12">Mobile Phone Graphical User Interface (GUI) for Appliance Remote Control: An SMS-based Electronic Appliance Monitoring and Control System (2013)</h4>
+				<p id="content12">Identifier: ESG-01-1213-20<br>
+				Members: Alcantara, Charmaine Lagula, Marc Latina, Adolfo Te, Charmaine<br>
+				Abstract:<br>
+				Home monitoring system is an effective way to prevent many household accidents that may occur whether we are aware or not. There are a lot of home control devices which were developed in the past. Take fire hazards for example, there are a lot of ways for house fire to occur likeoverheating appliances. Fire imposes a big hazard in our homes but there is a device that was built to lessen the probability of this from occurring or at least lessen the damage done. The fire alarm works whenever there is enough smoke that goes in the detector. It will automatically make a sound to alarm the people inside the house, some home systems has a built-in sprinklers that works when the fire alarm activates preventing further property destruction. There are a lot of ways of designing a home control system but at these times, the design must be adaptable and adaptive to majority of people. Global System for Mobile Communication (GSM) is a means of wireless communication between people. It can also be used to communicate with devices such that it functions even if a user is not physically present in the vicinity of the device. GSM is the most adaptable medium since it has a further range of communication compared to Bluetooth and infrared. Moreover, it is also more accessible than Wi-Fi since it is more widely available. A home monitoring system interfaced with GSM poses a great advantage and convenience to the public. The user can be updated regarding the status (ON or OFF) of his appliances which can prevent future damage. It will also be able to alarm the user of any irregular activities of the appliances immediately even if the user is at another place.<br>
+				Correspondence:<br>
+				Aaron Don Africa<br>
+				aaron.africa@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab13" role="tabpanel" aria-labelledby="tab13-tab">
+				<br><h4 id="faculty13">Development of an IV-Curve Tester with Solar Tracker Capability and Temperature Measurement Module for Characterization of SIKAT Solar Panels (2013)</h4>
+				<p id="content13">Identifier: ESG-01-1213-01<br>
+				Members: Areza, Timothy Navarro, Kenneth Romey, Elijah Tee, Darell Tee Teh, Gerard<br>
+				Abstract:<br>
+				The study aims to characterize the SIKAT II solar panels and identify their actual performances under different types of conditions that is present in the car such as temperature, angle displacement, dirt and cell shadowing The group developed an IV Curve Tester module to measure different components of the cell such as current, voltage and temperature at different loading conditions. The group also developed an automated Solar Tracker that measures the illumination level, angle and azimuth of the sun. Visual Basic was used to control the data acquisition function of the modules in the computer. In line with the solar panels to the SIKAT II Solar Car, the group also improved the array wiring of the car by designing new wiring diagrams and layouts as well as implementing the design using new, low-resistance wires.<br>
+				Correspondence:<br>
+				Jose Antonio Catalan<br>
+				jose.antonio.catalan@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab14" role="tabpanel" aria-labelledby="tab14-tab">
+				<br><h4 id="faculty14">Implementation of the Driver Controls, Wiring and Lighting Systems of the DLSU Solar Car in Conformance to the World Solar CHallenge (WSC) 2013 Regulations (2013)</h4>
+				<p id="content14">Identifier: ESG-01-1213-22<br>
+				Members: Guanco, Kristine Marie Matriano, Karlo Pabilonia, Carmela Arabelle<br>
+				Abstract:<br>
+				The previous Sikat II solar car had to undergo several improvements with respect to its technical aspects in order to comply with the rules and regulations set for the World Solar Challenge (WSC) 2013. A new dashboard layout was implemented, thus providing efficient driver controls. New and improved methods of organization were designed and implemented on the new wiring system to address the problems faced with the previous layout. A new lighting system was developed and tested to follow the modified rules and regulations set for the WSC 2013. Key Words: dashboard layout, driver controls, lighting, Sikat II, solar car, wiring, World Solar Challenge (WSC), serial wiring, parallel wiring.<br>
+				Correspondence:<br>
+				Jose Antonio Catalan<br>
+				jose.antonio.catalan@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab15" role="tabpanel" aria-labelledby="tab15-tab">
+				<br><h4 id="faculty15">Implementation of Speed and Torque Control on Quadrotor Altitude and Attitude Stability (2013)</h4>
+				<p id="content15">Identifier: ESG-01-1213-C1<br>
+				Members: Dollosa, Christian Michael Gavino, Samuel Hermoso, Gerard Laco, Nico Roberto, Louise Angelo<br>
+				Abstract:<br>
+				Quadrotor control is a difficult exercise both in terms of theory and application as the stability and ability to hover of the under-actuated vehicle is an immediate result of the effectiveness of the control system. Most quadrotor flight controllers make use of an attitude control loop which is responsible for stabilizing the flight of the vehicle by directly driving the four motors via the electronic speed controllers (ESCs). Such a control loop loses some of its effectiveness when the motors and ESCs are not well matched resulting in variation of the control performance. This study presents an alternative control structure which incorporates an inner speed and torque control loop within the attitude and altitude loop in order to achieve better flight stability and maneuverability. The control structure is designed to make use of Proportional-Integral-Derivative (PID) control in order to correct for errors in the process and to drive the motors correspondingly. The control system is simulated and tuned using Simulink and later implemented digitally on a dsPIC33 microcontroller which in turn is interfaced to the various feedback and instrumentation sensors. The attitude feedback, the most complicated to achieve, is implemented using a complementary filter to fuse the accelerometer and gyrometer data in order to arrive at usable attitude estimates. The result of the flight testing reveals that the experimental and simulation results vary only by an attitude standard deviation of less than 5 degrees and an altitude standard deviation of 50 cm and that the control structure works as intended. The control structure not only compensates for motor and ESC mismatches but also allows the attitude control loop, the one whose effects on the stability is most visible, to operate at the range of operation at which it was tuned at.<br>
+				Correspondence:<br>
+				Elmer Magsino<br>
+				elmer.magsino@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab16" role="tabpanel" aria-labelledby="tab16-tab">
+				<br><h4 id="faculty16">Wall-Following Condominium Surveillance Mobile Robot with Auto Docking and Recharging Capabilities (2013)</h4>
+				<p id="content16">Identifier: ESG-01-1213-C4<br>
+				Members: Lim, Gerard Irvin Melad, Wiljan Sy, Melvin James<br>
+				Abstract:<br>
+				This study aims to provide complementary assistance to the present surveillance system in a condominium environment. The group used a Wall following Algorithm, Docking Algorithm and an IP camera for the movement, recharging and monitoring functions respectively. With the integration of the aforementioned features, viewable range for monitoring has been increased and some blind spots of the stationary camera can now be covered. Hence, lessening some disadvantage pose by the present surveillance system.<br>
+				Correspondence:<br>
+				Jay Robert Del Rosario<br>
+				jay.delrosario@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab17" role="tabpanel" aria-labelledby="tab17-tab">
+				<br><h4 id="faculty17">Microcontroller-Based Automated Warming Device for Temperature Regulation (2013)</h4>
+				<p id="content17">Identifier: ESG-04-1314-02<br>
+				Members: Agustino, Blythe Briones, Kith Lorenz Canoza, Albert Levinson<br>
+				Abstract:<br>
+				The purpose of this research is to design and implement an automated warming device that will be used for the temperature regulation of hypothermic patients. The PIC16F887A microcontroller processes all the data coming from temperature and pressure sensors and determines the proper calibration that will be used to control the necessary devices that will be responsible for the entire warming process. The automated warming device also has a blood pressure acquisition system, an alarm system, and a data acquisition system features. Overall, the PIC16F877A microcontroller handles the operation of the LCD, GSM module, alarm buzzer, heaters, indicators, motor, solenoid valve, switching circuits and conditioning circuits.<br>
+				Correspondence:<br>
+				Ms. Ann Dulay<br>
+				ann.dulay@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab18" role="tabpanel" aria-labelledby="tab18-tab">
+				<br><h4 id="faculty18">Autonomous Parallel Parking Using Neuro-Fuzzy Logic Controller with the Aid of Sensors (2013)</h4>
+				<p id="content18">Identifier: ESG-03-1112-01<br>
+				Members: Marasigan, Jerome Saberon, Iara Marie San Jose, Dan Patrick Sevilla, Paul Anthony<br>
+				Abstract:<br>
+				This thesis project presents an autonomous sensor â€“ based parallel parking maneuver on a car-like mobile robot. This project focuses on parallel parking the carlike mobile robot within a given scenario following the fifth degree polynomial reference path in a backward maneuver. Training data, gathered from the fifth degree polynomial path, is subjected to subtractive clustering algorithm to determine the fuzzy controller and trained by the adaptive neuro-fuzzy inference system. The project uses eight ultrasonic sensors, placed strategically to avoid radial imprecision, to detect the obstacles along its path; an accelerometer is also used to detect the inclination of the car-like mobile robot (CLMR). The sensors acquire necessary sensor data for the Neuro- Fuzzy Inference System to determine the proper motion direction at each sampling point. The efficiency of the proposed Neuro-Fuzzy Controller (NFC) design is revealed through the actual results.<br>
+				Correspondence:<br>
+				Argel Bandala<br>
+				argel.bandala@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab19" role="tabpanel" aria-labelledby="tab19-tab">
+				<br><h4 id="faculty19">A Full Custom IC Design of a Posicast Controller for DC-DC Boost Converter (2013)</h4>
+				<p id="content19">Members: Chua, James Kevin Gaffud, Laurent Palma, John Vincent Santos, Kelvin John So, Marlon Benedict<br>
+				Abstract:<br>
+				The Posicast principle is a control method that aims to dampen oscillations of a lightly damped system. It is known for its ability to reduce the sensitivity issues present in classical Posicast controller. In this paper, a hybrid Posicast controller is integrated into a conventional circuitry of a DC-DC Boost converter intended for boosting a 3V input to 6V output. A full custom layout is designed for the controller using the 0.35um CMOS library. The behavior of the CMOS controller is verified by comparing it with the MATLAB model behavior. Experimental results show that the hybrid Posicast controller was able to improve the steady-state response by improving its settling time to 1.8ms, and was able to eliminate the startup output overshoot of the Boost Converter.<br>
+				Correspondence:<br>
+				Roderick Yap<br>
+				roderick.yap@dlsu.edu.ph</p>
+			</div>
+			
+			<!-- Thesis 2012 -->
+			<div class="tab-pane fade" id="tab20" role="tabpanel" aria-labelledby="tab20-tab">
+				<br><h4 id="faculty20">Fuzzy-Based pH, Temperature, and Water Depth Aquaculture System (2012)</h4>
+				<p id="content20">Identifier: CSG-05-1112-01<br>
+				Members: Ronald James C. Albano, Rafael Don S. Magbuhos, Masanori A. Takamoto and Rolando Alberto P. Valencia III, advised by Engr. Reggie C. Gustilo<br>
+				Abstract:<br>
+				One of the problems of technology today is how to integrate it with traditional sources of living like fish farming, rice planting and the like. Much consideration must be given especially to fish farming because with the slightest change on one parameter, the lives of the fishes would be at stake. This study aims to spearhead the innovation of traditional sources of living so that we can enhance the resources that Mother Nature could give; thus, incorporating technology with fish farming by monitoring and self-correcting the parameters which are set-up via the computer system and it automatically adjusts the water parameters to the ideal environment that the fishes can live. By implementing this study, it is believed that there could be an effect on lowering the mortality rate because the parameters can be quantified and corrected accordingly through real time.
+				Correspondence:<br>
+				Engr. Reggie C. Gustilo<br>
+				reggie.gustilo@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab21" role="tabpanel" aria-labelledby="tab21-tab">
+				<br><h4 id="faculty21">Wireless Autonomous Data Logging Surface Water Vehicle (2012)</h4>
+				<p id="content21">Identifier: CSG-C1-02-1112<br>
+				Members: Kaine Donald B. Nicolas, Rowell R. Reyes and Loren Abigail C. Sion, advised by Elmer R. Magsino<br>
+				Abstract:<br>
+				Today, in this present age, water contamination is one ofthe biggest problem the world faces. This is a result of the Earth’s rapid modernization. Monitoring the condition ofthe bodies of water is essential for its preservation andalso offers an insight to the health of its marine life whileproviding people with data on how pollutants affectnatural resources and at the same time provides itsorigin. There are a handful of ways to analyze the qualityof water although these methods have either expensive implementation, consumes huge amount of energy andtime, or generates unreliable data highlighting the needfor modern technology where monitoring can be efficientwhile accurately gathering important information bodiesof water.This paper aims to demonstrate how water monitoringcould be done with less human interaction throughautomation of a surface water vehicle and itscorresponding system. For this thesis, a surface watervehicle has been modified and installed with amicrocontroller, sensors, GPS module and compass. Asystem that is capable of moving on its own whileprocessing data from the sensors, GPS module andcompass and sending the data wirelessly to a base station via an Xbee module. The data that the base station hasreceived will then be processed through the Visual Basicprogram which will then be uploaded to a website. Thesystem also includes a floating device that serves as apartial simulation of a data gathering surface watervehicle and acts as a data packet router.<br>
+				Correspondence:<br>
+				Elmer R. Magsino<br>
+				elmer.magsino@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab22" role="tabpanel" aria-labelledby="tab22-tab">
+				<br><h4 id="faculty22">Car Park Management System With Automated Login and Logout System Using Digital Image Processing (2012)</h4>
+				<p id="content22">Identifier: DSP-01-1112-C1<br>
+				Members: Chino Jeddison J. Chan, Gerald Timothy C. Chua, William D. Gomez, Kevyn Aldrich L. Tan and Roen Ivan J. Ylagan, advised by Ann E. Dulay<br>
+				Abstract:<br>
+				The Car Park Management System (CPMS) developed in this study aims to reduce the waiting time at check-in, check-out and parking processes of the present car park system. The system also aims to enhance the reliability in data generation and handling.The CPMS comprises three major blocks, the hardware, the software and the interfaces. The hardware includes the sensor in detecting the presence of the cars in both the entry and the exit points. The sensors are also installed inside the parking area, the sensors aid the drivers in looking for an available slot in the developed CPMS. Other parts of the hardware block the system includes the printer for printing the parking tickets, the camera that is used to capture the image of the car plates and the LED display for displaying the necessary information such as converted data and the number of slots available. The interface block of the CPMS includes the PIC Microcontroller that is used to connect the sensor to the PC, and the LAN Network used to synchronize the data of the login and logout computers. The software block of the CPMS includes the image processing of the system and the database. The image processing utilizes JavaOCR for the conversion of the car plate image into text that will be stored in the database with the necessary parameters. Mention here the nuber of training images used and they comprise letters and numbers in the english alphabetThe CPMS is deployed in a makeshift parking space. The efficiency of detecting the presence of the car is 100% while the accuracy of converting the car plate to text has an average of 92%. The car plates tested in this study is the standard 2004 Philippine Car plates how many were used. The car plate should have a font color of green and should contain three letters and three numbers with the Rizal Monument in between. The car plate should also be in a good condition and the environment should be well lit.<br>
+				Correspondence:<br>
+				Ann E. Dulay<br>
+				ann.dulay@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab23" role="tabpanel" aria-labelledby="tab23-tab">
+				<br><h4 id="faculty23">AUTOMATED SIM CARD TESTER USING AUTOMATED NETWORK TESTER USING MICROCONTROLLER-BASED EMBEDDED SYSTEM FOR QUALITY AND SERVICE VALIDATION (2012)</h4>
+				<p id="content23">Identifier: ESCA-01-1112-01<br>
+				Members: Princess Arreola, Xian Jian H. Liao, Clarice Ann R. Reyes and Verdan Geronimo A. Salay, advised by Bernardo F. So Jr.<br>
+				Abstract:<br>
+				Nowadays communication is a crucial part of our daily lives and mobile phones are the primary means of communications in the Philippines. Being able to communicate with other people is no longer enough, the communication experience must be satisfying through minimal to no errors in the products (SIM cards and cellular phones) and services (accepting calls, receiving text messages, sharing of load, etc). This project is made to create an automated stand-alone microcontroller-based embedded testing system that will replace the current manual testing system used by SMS Global Technologies, Inc. The group does not eliminate human participation in the testing process, but minimizes the chance of human error from occurring by designing the microcontroller program to have the GSM modems perform tests on SIM cards (once instructed by the microcontroller), record the results, and export it to an MS Excel file. The project dealt with checking of SIM card functionality such as balance checking, reloading, texting, calling, subscribing to GCASH, etc. This paper also includes complete discussion on different hardware components used, microcontroller programming, database programming using MySQL, GUI designing via Java, and both overall and detailed design of the project.<br>
+				Correspondence:<br>
+				Bernardo F. So Jr.<br>
+				bernardo.so.jr@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab24" role="tabpanel" aria-labelledby="tab24-tab">
+				<br><h4 id="faculty24">Integrated Electronic Toll Collection System using RFID Technology (2012)</h4>
+				<p id="content24">Identifier: ESG-C3-1112-02<br>
+				Members: Aldred John Y. De Leon, Bernhardt Andrew B. Ducante, Ann Lorainne R. Paragas and Cyrus Jason S. Reyeslao, advised by Ann E. Dulay<br>
+				Abstract:<br>
+				Our present Electronic Toll Collection (ETC) System using microwave technology which is the e-pass, can be a solution to minimize the inconveniency of drivers at the expressways, however the e-pass transponders are expensive. Developing a new ETC System using cheaper RFID-based readers and transponders can be a solution to solve this problem and a way to eliminate manual toll transactions.The system uses RFID reader as means for detection of tags in the field, RFID tags as mean for receiving the data from the RFID reader, laptop computers for storage of data (server), and a GSM module for sending a notification message for balance inquiry of the tags. The RFID detection/reading process has four main functions: (1) to detect the RFID tag of a vehicle that enters the tollgate, (2) to detect the RFID tag of a vehicle that exits the tollgate, (3) to send the data gathered by the reader to the database server and (4) to notify the balance of the customer’s RFID tag through SMS.The RFID reader of the system has the capability to detect installed RFID tags on moving vehicles in the field. Once the tag is detected during entering or exiting of vehicles at the tollgate, the data gathered by the reader are then stored in the database. Whenever a vehicle exits the tollgate, the system computes the toll fee through visual basic 6.0. After all the computations, if the remaining balance of the RFID tag is below the required minimum balance of the system the GSM module will send a SMS to the customer for balance inquiry and notification.<br>
+				Correspondence:<br>
+				Ann E. Dulay<br>
+				ann.dulay@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab25" role="tabpanel" aria-labelledby="tab25-tab">
+				<br><h4 id="faculty25">Enhancement of Laser Tag TechnologyThrough the Implementation of ZigBee, Video Multiplexing and Audio Communication (2012)</h4>
+				<p id="content25">Identifier: CSG-01-1112-02<br>
+				Members: Jerome A. Avelino, Ciara Thaddea P. Bagay, Carl Lawrence N. Baylon and Markon Andrew G. Galvez,advised by Engr. Reggie Gustilo<br>
+				Abstract:<br>
+				The study aims to enhance the game play of the current Laser Tag Game by adding a vicinity scanning system. The group used ZigBee technology as a Radar and IP cameras that are video multiplexed in order for the player’s to see each other’s views. The group also used Walkie Talkie’s as audio communication between players. LabView, Python and Dreamweaver were used to program the Radar and the Website. All of the features can be viewed in an LCD monitor strapped on each player’s wrist.<br>
+				Correspondence:<br>
+				Engr. Reggie Gustilo<br>
+				reghie@gmail.com</p>
+			</div>
+			<div class="tab-pane fade" id="tab26" role="tabpanel" aria-labelledby="tab26-tab">
+				<br><h4 id="faculty26">InVisionScope: Enhanced Camera Mobility in Real-Time Viewing (2012)</h4>
+				<p id="content26">Identifier: CSG-03-1011-02<br>
+				Members: Rafael John M. Caderma, Andrew C. Cruz, James Niño P. Marcos and Ken Albert T. Zhang, advised by Engr. Reggie C. Gustilo<br>
+				Abstract:<br>
+				Endoscopy is a procedure that uses a lighted flexible endoscope to see inside the body. The endoscope to be used depends on which part of the body is to be diagnosed. The endoscopic procedure discussed in this research is called Gastroduodenoscopy and its main focus is the stomach. This endoscopic procedure may be used to determine the cause of certain sicknesses like abdominal pain, nausea, vomiting and many more. However, the instrument used for endoscopy is too expensive, making the procedure itself expensive as well. Additionally, only a hand few of medical professionals can afford the present endoscope, which makes the practice of endoscopy limited.The purpose of this research is to produce an endoscope that is low-cost but with acceptable image quality, so even practitioners from rural areas can afford an endoscope and practice endoscopy. An additional objective is to synthesize a new kind of endoscope that is capable of tilting and rotating electronically by utilizing a microcontroller and servo motors.<br>
+				Correspondence:<br>
+				Engr. Reggie C. Gustilo<br>
+				reggie.gustilo@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab27" role="tabpanel" aria-labelledby="tab27-tab">
+				<br><h4 id="faculty27">Radio Frequency Energy Harvesting for Autonomous Wireless Sensor System (2012)</h4>
+				<p id="content27">Identifier: CSG-06-1112-01<br>
+				Members: Gan, Mark Emmanuel S., Reyes, Paul Michael V., Tee, Justin Marco O., and Vy Matthew James B., advised by Africa, Aaron Don M.<br>
+				Abstract:<br>
+				The study aims to prove that the designed sensor node can function as an independent system capable of providing energy for itself by harvesting the available Radio-Frequency energies and converting them to usable DC power. It is also an aim to transmit the sensor readings wirelessly at specified time intervals. In achieving these, several factors were considered. They include proper harvest-antenna positioning with respect to the source, appropriate capacitance and number of RF-to-DC converter stages, suitable energy-storage system, good implementation of data transmission system, and pertinent rate at which the readings are sent per day. Surveying at different times of the day was also done in order to determine the behaviour of the strength of the received RF energy. From the RF emissions of the GSM base station located inside the university, the gathered energy was proven to be enough in powering and allowing the wireless temperature and humidity sensor system to transmit data readings, thus making it autonomous.<br>
+				Correspondence:<br>
+				Dr. Aaron Don M. Africa, Ph.D.<br>
+				aaron.africa@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab28" role="tabpanel" aria-labelledby="tab28-tab">
+				<br><h4 id="faculty28">Navigation of Line Following Mobile Robotaided by RFID Technology Forindoor Warehouse Inventory Counting Systems (2012)</h4>
+				<p id="content28">Identifier: ESG-01-1112-02<br>
+				Members: Steven Howard C. Chan, Angela Cathleen K. Go, Michael Angelo L. Lacson and Charles Vincent M. Tingjuy, advised by Engr. Edwin Sybingco<br>
+				Abstract:<br>
+				Local warehouse processes mostly still countinventories manually. This is an extremely inaccurate andtime consuming task. This thesis aims to create anautomated counting system for inventories in a warehousesetup. The goal is to be able to create a line followingrobot with the feature of multiple simultaneous inventorycounting utilizing Radio Frequency Identification (RFID)technology.The system is composed of the robot navigationand RFID reading. The hardware for navigation utilizes aPIC16f77a microcontroller, infrared line sensors andproximity sensors. The RFID reading involves utilizationof Ultra High Frequency (UHF) RFID reader and passiveRFID tags placed in the warehouse inventories forproduct reading. UHF RFID technology was utilized forits multiple tag detection capabilitie which makescounting faster to execute.The system was deployed in a local electronicsdistribution warehouse. The performance of manualcounting and the created automated system will becompared. In the future, this study can serve as aprototype to aid businesses in migrating to automatedinventory processes.<br>
+				Correspondence:<br>
+				Engr. Edwin Sybingco<br>
+				edwin.sybingco@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab29" role="tabpanel" aria-labelledby="tab29-tab">
+				<br><h4 id="faculty29">Automotive Fleet Management System on Telematics Application (2012)</h4>
+				<p id="content29">Identifier: ESG-01-1112-13<br>
+				Members: Maria Arrianne M. Correa, Mererose L. Marcos, Rojan T. Reynancia and Margaret S. VIlbaradvised by Engr. Edwin Sybingco<br>
+				Abstract:<br>
+				The application of telematics assures a lot of possibleimprovements in terms of automotive services andfunctionality. This paper will focus on one of its mostpractical applications, which is fleet management.Tracking functionalities and information exchange will beprovided by the proposed system in order to providebetter customer experience and also convenience to theowner.The technologies of GSM/SMS and GPS will be used tofulfill the main objective of this study, which is to applytelematics on automobile fleet management whereincustomers could send requests for service through textmessaging and it will be sent to a remote automatedserver communicating with a microcontroller-basedhardware on the vehicle part.Moreover, a database will be kept by the automatedserver, which includes all the data needed that could behelpful for further business strategies beneficial to thetransport business.<br>
+				Correspondence:<br>
+				Engr. Edwin Sybingco<br>
+				edwin.sybingco@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab30" role="tabpanel" aria-labelledby="tab30-tab">
+				<br><h4 id="faculty30">Development of Fingerprint Verification Algorithm Using Fuzzy and Genetic Algorithms Implemented in MATLAB (2012)</h4>
+				<p id="content30">Identifier: ESG-01-1112-18<br>
+				Members: Remington L. Chan, Kim Alexis P. Mirasol and Mat Vincent Edward E. Tacolod advised by Melvin K. Cabatuan<br>
+				Abstract:<br>
+				Fingerprint Verification is a kind of biometric system that deals with the different characteristics of the fingerprint which includes the minutiae, its coordinates, and orientation angles. A program consists of fuzzy inference system (FIS) and genetic algorithm (GA) is developed to create fingerprint verification algorithm that is implemented in MATLAB. The program performs enrollment of an image to a database; and matches another input with reference to the database. Input images are taken from the Fingerprint Verification Competition 2004 (FVC2004) databases with added color variations, showed a good performance of the algorithm for the conditions set.<br>
+				Correspondence:<br>
+				Melvin K. Cabatuan<br>
+				melvin.cabatuan@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab31" role="tabpanel" aria-labelledby="tab31-tab">
+				<br><h4 id="faculty31">IC Design Of A CMOS Bandgap Reference with Trimming using Synopsys EDA (2012)</h4>
+				<p id="content31">Identifier: ESG-01-1112-01<br>
+				Members: Jan Tricia Grace A. Baybay, Niño Angelo C. Cadiz, Carlvinn S. Celemin and Daryl R. Sng, advised by Roman A. Palo<br>
+				Abstract:<br>
+				From the analog-to-digital and digital-to-analog converter domination in the market and with most of them requiring a constant voltage and temperature in order to operate, a Bandgap Voltage Reference is used. This research focuses on a Bandgap Voltage Reference that uses pure complementary metal-oxide semiconductor or CMOS technology to compensate for easier manufacturing process and less bulking effects in the output circuit. The circuit has a temperature range of – c and a VDD range of 1.2V to 1.5V with a limit of no more than (+/-) 0.005V variation for the outputreference voltage of 0.5 Volts. The circuit will also be featuring a start up circuit and a digital trimming technique. The circuit is tested at five process corners: Typical-Typical (TT), Slow-Slow (SS), Fast-Slow (FS), Slow-Fast (SF) and Fast-Fast (FF) and simulated using the SYNOPSYS EDA under the 90nm library.<br>
+				Correspondence:<br>
+				Roman A. Palo<br>
+				romanpalo@gmail.com</p>
+			</div>
+			<div class="tab-pane fade" id="tab32" role="tabpanel" aria-labelledby="tab32-tab">
+				<br><h4 id="faculty32">Zapper with Microcontroller for Meat Products (2012)</h4>
+				<p id="content32">Identifier: ESG-01-1112-06<br>
+				Members: John Vuhn S. Gonzales, Reynaldo C. Robles III and Deo Angelo B. Ubana, advised by Engr. Miguel O. Gutierrez<br>
+				Abstract:<br>
+				This paper describes the implementation of the Zapper with Microcontroller to meat products to prove that it can significantly decrease E. coli bacteria. The Hulda Clark Zapper, individually produces an output of positive offset voltage and is basically used for curing sicknesses in humans. A load cell sensor was used to get the input weight and an instrumentation amplifier AD620 was used to amplify the signal of the load cell. The load cell output will correspond to a designated weight input that is programmed in the microcontroller. The PIC16F877A microcontroller was used to vary the input power, with the help of relays, relay drivers, and voltage regulators, of the zapper.The two types of testing, namely Quantitative Polymerase Chain Reaction (QPCR) for the microscopy testing and Fluorescence spectroscopy, were used to prove the bacteria killing that both produced excellent results in terms of bacteria elimination.<br>
+				Correspondence:<br>
+				Engr. Miguel O. Gutierrez<br>
+				miguel.gutierrez@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab33" role="tabpanel" aria-labelledby="tab33-tab">
+				<br><h4 id="faculty33">Labview-Based Voice Activation System For Switching Home Appliances Utilizing Audio Fingerprinting Algorithm (2012)</h4>
+				<p id="content33">Identifier: ESG-01-1112-15<br>
+				Members: Joseph Emil F. Aco, Margaret D. Go, Reginald Noel P. Nulud and Jonathan Luigi R. Pedron, advised by Engr. Alexander C. Abad<br>
+				Abstract:<br>
+				This thesis aims to create voice-activated home automation system that will control four appliances (television, lights, roll-up/roll-down blinds and remote-controlled electric fan). Relay switches were also integrated in the system in controlling certain appliances; opto-isolators served as circuit protection. A software called LabVIEW was also used especially the LabVIEW FPGA Module, which allowed the group to use the output ports of the Spartan 3E FPGA Board. Audio Fingerprinting method was used for the speech recognition process. This was done by converting the analog voice signal into digital form, then it will be filtered out by using eight fourth-order Butterworth bandpass filters, which serve as filterbanks. These eight filters pass frequencies with an increment of 200 Hz range from 200 Hz up to 1800 Hz. The system was also tested and implemented in an unconstrained environment. Results showed that the system can recognize words even if the microphone and the speaker are distant from each other. This was attained by utilizing an array microphone to obtain the voice input from the user. The voice recognition proved to be speaker-independent. However, it is more efficient when voice recognition is speaker-dependent<br>
+				Correspondence:<br>
+				Engr. Alexander C. Abad<br>
+				alex.abad@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab34" role="tabpanel" aria-labelledby="tab34-tab">
+				<br><h4 id="faculty34">Low Power Wireless Monitoring System Dual Powered by Piezoelectric Transducers and Solar Cells (2012)</h4>
+				<p id="content34">Identifier: ESG-01-1112-16<br>
+				Members: Laura Mae C. Dadios, Stella Marie B. Encina, Gabriel John D. Recalde and Odessah Marion G. Tomampoc,advised by Alexander C. Abad<br>
+				Abstract:<br>
+				Weather monitoring systems are very useful especially these times where weather is unpredictable. Weather analysis must always be present from time to time. The weather monitoring system used by our country makes use of solar panels to power up the system. It sends data read by each node thru SMS. A Wireless Sensor Network (WSN) was made to address these concerns. The WSN is powered-up by two energy-scavenging sources – piezoelectric transducers and solar cells. Each sensor node is comprised of energy scavengers, microcontroller, temperature and relative humidity sensors and Zigbee. The readings of each sensor nodes, that is properly scheduled, will be sent to the base station. The base station is the interface between the hardware and the software. The data received will be logged by a program developed using LabVIEW. Later on, these data would be sent through a GSM Module and will be published in the Web.<br>
+				Correspondence:<br>
+				Engr. Alexander C. Abad<br>
+				alexander.abad@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab35" role="tabpanel" aria-labelledby="tab35-tab">
+				<br><h4 id="faculty35">Automated Microcontroller-Based Smoothie and Shake Blender and Dispenser (2012)</h4>
+				<p id="content35">Identifier: ESG-02-1011-08<br>
+				Members: Kevin Cyril B. Nemo, Kevin Patrick P. Olanday and Antonio Anthony S. Payumo, advised by Roderick Y. Yap<br>
+				Abstract:<br>
+				This paper focuses on the study, design, and implementation of an automated microcontroller-based smoothie and shake blender and dispenser that can output predefined or customized blends and drinks ready for consumption. The prototype integrates a single microcontroller that handles the algorithm, operation, and process functions of the system. The program was designed to be memory efficient, employing sections of the code linearly and chronologically. The machine is composed of six food grade cylinders and crisscross blades responsible for the storing and blending of the ingredients. Gate valves, which are driven by relays, are incorporated into each container for dispensing. The amount to be dispensed is controlled by timing obtained by rigorous testing which takes flow rates and consistency into account. Process control is obtained by the implementation of a user interface and strategically positioned sensors. The dispensed output undergoes a final blending before it is made ready for consumption.<br>
+				Correspondence:<br>
+				Roderick Y. Yap<br>
+				roderick.yap@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab36" role="tabpanel" aria-labelledby="tab36-tab">
+				<br><h4 id="faculty36">Microcontroller Based Electromagnetic Weight Machine for Physical Rehabilitation with Graphical User Interface (2012)</h4>
+				<p id="content36">Identifier: ESG-03-1011-03<br>
+				Members: Jewel C. Balite, Jamaica Renz B. Cadiz, S. Alfredo A. Obrero III and Marie Iris A. Raña,advised by Engr. Alan B. Landa<br>
+				Abstract:<br>
+				The group aims to provide an improved weight machine system that would be able to cater the needs not only of fitness enthusiasts but more of the physical therapy patients. The main purpose of the electromagnetic weight machine is to provide safety and comfort to people who use resistance training equipments and at the same time, an easy way to modify equipment settings to match the patients’ routine. The researchers will utilize electromagnet to replace the use of weight plates and will create a Graphical User Interface (GUI) for the equipment where the user can control and set the parameters of the electromagnetic weight machine.<br>
+				Correspondence:<br>
+				Engr. Alan B. Landa<br>
+				alan.landa@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab37" role="tabpanel" aria-labelledby="tab37-tab">
+				<br><h4 id="faculty37">Integrated Circuit Design of Buck Boost DC to DC Converter Using Pulse Frequency Modulator Using Sypnosys (2012)</h4>
+				<p id="content37">Identifier: ESG-08-1112-01<br>
+				Members: Maria Carlota R. Elauria, Erika Mae B. Gatus, Pauline Alexis L. Giron, Derrick Jan M. Lim andMiguel O. Gutierrez, advised by Roderick Y. Yap<br>
+				Abstract:<br>
+				This paper is a design of a buck – boost converter using 90 nm library being run in the software Synopsys. The circuit design will consist of the buck – boost converter and the oscillator. The buck – boost converter serves as the main circuit of the system while the oscillator serves as the control of the system since its duty cycle and frequency determines the behavior of the circuit – it will trigger the stepping down and stepping up of voltages. Pulse frequency modulation will also be implemented through the oscillator since PFM is said to work at low load conditions while the system is in standby mode.<br>
+				Correspondence:<br>
+				Roderick Y. Yap<br>
+				roderick.yap@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab38" role="tabpanel" aria-labelledby="tab38-tab">
+				<br><h4 id="faculty38">Filipino to Chinise Speech-to-Speech Translator Using NeuralNetwork and Database System (2012)</h4>
+				<p id="content38">Identifier: ESG-08-1112-01<br>
+				Members: Mark Renier M. Bailon, Mark Albert C. De Silva, Reyann Jhorel P. Lapuz, John Larry A. Tinio and Ted Bryan K. Yu, advised by Engr. Reggie C. Gustilo<br>
+				Abstract:<br>
+				Technology nowadays becomes convenient because conveying information between computers and other electronic devices can be done in a speech-to-speech environment through speech implementation. There aredifferent technologies that can aid in speech implementation and one of which is the Neural NetworkSystem (NNS). A Neural Network System is composed of many simple processors combined together thatrecognizes pattern through series of trainings.The aim of the research is to produce computer software that uses an algorithm in order to translate Filipino speech into Chinese speech with the use of an artificialneural network aided by LabVIEW. The use of LabVIEWin implementing the whole speech-to-speech system hasbeen observed in detail through three stages: speech-totextstage, text-to-text stage, and text-to-speech stage. Theresults showed that increasing the number of training ofwords increases the success rate of the system inrecognizing the words. Some words which are nearlysimilar in pronunciation received lower success rates ascompared to the other words. Training has a success rateof 93.4% while testing of the 500 words was done to 25samples and it garnered an average of 91.59 percent.Speech implementation has been successfully conductedthat applies speech recognition, speech synthesis, anddatabase system. The results of the speech-to-speechtranslation of Neural Network System in LabVIEW arepresented such that they can be used as an aid toimprovement of speech implementation.<br>
+				Correspondence:<br>
+				Engr. Reggie C. Gustilo<br>
+				reggie.gustilo@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab39" role="tabpanel" aria-labelledby="tab39-tab">
+				<br><h4 id="faculty39">Urine Crystal Detection in a Urinalysis Process Using the Harris and Stephens Corner Detection Algorithm (2012)</h4>
+				<p id="content39">Identifier: ESG-18-1112-01<br>
+				Members: Cristi, J., Limbo, J., Navarro, R., and Ng, E., advised by Dulay, A.<br>
+				Abstract:<br>
+				In urinalysis, medical technologists have to spend most of their time looking through a microscope trying to identify and count the urine crystals in a sample manually. Their evaluation of the sample is then written in a medical report and sent to the doctor or handed to the patient. This process takes time and it is common for patients to come back several hours or the next day to get the result from the hospital. To address this issue, the previous research conducted by Lee, A. et. al. proposed the automation of urine crystal detection in a urine sample. [3] However, their study only included the detection of single crystals. The authors of this study develops a more robust detection system that will detect not only several single crystals in one urine sample image but overlapping crystals as well. The system developed will incorporate the Harris and Stephens algorithm and the Slope Corner Detection algorithm made by the group to further improve the corner detection capability and reach an accuracy of 95%. The main programming language used is C++ while the graphical user interface makes use of Java.<br>
+				Correspondence:<br>
+				Ann Dulay<br>
+				ann.dulay@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab40" role="tabpanel" aria-labelledby="tab40-tab">
+				<br><h4 id="faculty40">A Water Level Monitoring Apparatus Interfaced With a UPS Designed For River Environments (2012)</h4>
+				<p id="content40">Identifier: CSG-01-1112-01<br>
+				Members: Charles Emil A. Almazan, Erwin Aaron C. Eleria and Carl Patrick T. Selibio3, advised by Engr. Aaron Don Africa<br>
+				Abstract:<br>
+				This thesis aims to create a water level monitoring system to be tested for river environments and be unaffected by factors attributed by rain. The system will incorporate an uninterruptible power supply (UPS) and memory card into its design for continuous operation in case of power outages and data accuracy and contingency. The thesis goal is for the system to have a minimal accuracy of 90% regardless of inaccuracies caused by rain, waves, or power outages. The sensor is made of four probes which indicate if the water levels belong to any of the following categories: safe, low, high and critical. The data is then sent to the PIC microcontroller, and then sent to the memory card, which acts as a first hand data back-up, and to the GSM module which transmits it as an SMS to selected cellular phone numbers.<br>
+				Correspondence:<br>
+				Engr. Aaron Don Africa<br>
+				aaron.africa@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab41" role="tabpanel" aria-labelledby="tab41-tab">
+				<br><h4 id="faculty41">PC-Based Handsfree Short Messaging System Through Facial Movements Using Emotiv EPOC Headset (2012)</h4>
+				<p id="content41">Identifier: CSG-02-1011-02<br>
+				Members: Manuel Adrian C. Aclan, Anne Monique B. Calabon, Dominic Evan M. Pablo and Lawrence Angelo A. Tan, advised by Engr. Leonard U. Ambata<br>
+				Abstract:<br>
+				This study aims to develop a system wherein a hands free communications via GSM is integrated. The system was created using Emotiv EPOC headset as the interface device for persons with hand/arms disabilities to have efficient communications. This group used the headset to obtain the raw Electroencephalography (EEG) signals which would be produced by the facial movements of the user. The facial movements of the user specifically for the up, down, left, right directions would be processed and would be used for the control of the GUI. After which, a message would be made and sent to the recipient through GSM module. The GSM module serves as a transceiver of the text message which is used as the medium of communication. This technology opens other innovations for the Emotiv EPOC headset. The opportunity for people not only with hands and arms disabilities, but also for all human beings to experience a hands free communication system would be possible through this research.<br>
+				Correspondence:<br>
+				Engr. Leonard U. Ambata<br>
+				leonard.ambata@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab42" role="tabpanel" aria-labelledby="tab42-tab">
+				<br><h4 id="faculty42">Wireless Image Transmission in LCD Display Using Frequency Shift Keying Through Industrial, Scientific and Medical (ISM) Band (2012)</h4>
+				<p id="content42">Identifier: CSG-03-1011-03<br>
+				Members: Andrei M. Abarquez, Raphael Anjielo M. Centeno, Raymond P. Go and Froi Albert Z. Ibay, advised by Engr. Gerald P. Arada<br>
+				Abstract:<br>
+				This study aims to maximize the capabilities of LCD displays by sending images wirelessly. The researchers will use Frequency Shift Keying (FSK), a type of Frequency Modulation scheme to convey the information to the LCD display. MATLAB will be the main program that will be used. Furthermore, the researchers will utilizing the Industrial, Scientific, Medical (ISM) band. The modulated wave will be propagated to a certain carrier frequency between 433 MHz-915 MHz. The researchers will have no problem in terms of licensing since the ISM band is free for all.<br>
+				Correspondence:<br>
+				Engr. Gerald P. Arada<br>
+				gerald.arada@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab43" role="tabpanel" aria-labelledby="tab43-tab">
+				<br><h4 id="faculty43">Face Recognition Implementation Using Blackfin Microprocessor</h4>
+				<p id="content43">Identifier: DSP-02-1011-01<br>
+				Correspondence:<br>
+				Engr. Leonard U. Ambata<br>
+				leonard.ambata@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab44" role="tabpanel" aria-labelledby="tab44-tab">
+				<br><h4 id="faculty44">Coconut Climbing Robot (2012)</h4>
+				<p id="content44">Identifier: ESG-02-1011-01<br>
+				Members: Louis Lorenzo T. Pineda, Pete Andre V. Salazar, Miguel Karlo C. Valdez, Jennifer Ann A. Valenzuela, advised by Engr. Edwin Sybingco<br>
+				Abstract:<br>
+				This thesis aims to develop a coconut climbing robot that automatically climbs the coconut tree and enables the users to view the coconut fruits through a camera via live stream. The thesis would be using a power window motor which operates in 12v high torque, high current. Also, it utilizes a PIC16F877A as a microcontroller unit and a relay for the motor driver. The robot would also have a water-based spray that will be used to mark the coconuts which are ready for harvest. Whereas for the climbing mechanism, the robot will have gears pushed by springs since coconut trunks vary in diameter. In this way the robot will be firmly in contact to the surface of the coconut trunk preventing it from falling down.<br>
+				Correspondence:<br>
+				Engr. Edwin Sybingco<br>
+				edwin.sybingco@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab45" role="tabpanel" aria-labelledby="tab45-tab">
+				<br><h4 id="faculty45">Personal Computer-Based Aviation Traning Device Qualifications-Based Full Flight Simulator Utilizing AC Servo Motors For Low-Cost Basic Flight Skills Acquisition (2012)</h4>
+				<p id="content45">Identifier: ESG-02-1011-06<br>
+				Members: Robert Lenin Q. Flores, Federico Angelo C. Manalo, Paul Anthony C. Reyes and Renz Mitchell J. Tarnate,advised by Engr. Leonard U. Ambata<br>
+				Abstract:<br>
+				The goal of the group is to construct a flight simulator using commercial-of-the-shelf (COTS) materials that will mimic simple airplane maneuvers from takeoff to landing. The system incorporates a motion platform, which mimics the orientation of the simulated airplane, into a personal computer-based simulator. Two (2) AC servomotors are utilized rather than the conventional hydraulics to ensure lowest possible costs. Moreover, additional peripherals such as a joystick, throttle lever, and a rudder pedal, are also incorporated to provide control to the simulated airplane. For the software development, the system utilizes open source software such as JSBSim, Python, and Open Graphics Library (OpenGL). In this paper, the group presents the idea of using electric motors in flight simulators for those enthusiasts who want to enjoy “flight” in their own home. Also included in this paper are the experimentations and the analysis of the data gathered.<br>
+				Correspondence:<br>
+				Engr. Leonard U. Ambata<br>
+				ambatal@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab46" role="tabpanel" aria-labelledby="tab46-tab">
+				<br><h4 id="faculty46">TUTUBI: A Remote Controlled Insect Robot Used for Surveillance with Graphical User Interface (2012)</h4>
+				<p id="content46">Identifier: ESG-03-1011-01<br>
+				Members: Art Anthony B. Golimlim, Daniel Paolo I. Laroscain, Donovan G. Leynes, Ariel Christian J. Sevilla and Arnaldo D.R. Zotomayor, Jr., advised by Engr. Elmer R. Magsino<br>
+				Abstract:<br>
+				The word ornithopter comes from the combination of two Greek words for bird and wing. It is a device that imitates the flapping-wing flight found in nature. It can fly by producing enough lift through its wings flapping motion. Imagine installing a wireless camera in this ornihopters, it will result into a device that can survey an area from a remote location using a device that mimics the flight pattern of natural fliers like insects and bird. The paper is all about the construction of a robot that is capable of flying through flapping wings. The said prototype will be equipped with a wireless camera so that it can be a tool that let its user survey an area from a remote location. It can be remotely controlled through a personal computer (PC) or through a laptop by utilizing its graphical user interface.<br>
+				Correspondence:<br>
+				Engr. Elmer R. Magsino<br>
+				elmer.magsino@dlsu.edu.ph</p>
+			</div>
+			<div class="tab-pane fade" id="tab47" role="tabpanel" aria-labelledby="tab47-tab">
+				<br><h4 id="faculty47">Distance Monitoring Vision System For Automobiles Using Image Processing (2012)</h4>
+				<p id="content47">Identifier: ESG-08-1112-01<br>
+				Members: Marc Carlo E. Lijauco, Christian Rey Angelo C. Nuval and Richard Justin V. Vergara, advised by Engr. Leonard U. Ambata<br>
+				Abstract:<br>
+				The thesis aims to create a vision system for vehicles that would prevent frontal collisions. The system is more of an aid to the driver, giving notifications whenever there is a possibility of collision. With the use of a camera, this system is able to get series of images that would undergo processes of detection and distance calculations. And by utilizing OpenCV, detection of vehicles through Haar and distance measurement by perspective warping have been possible. Critical distances relative to the current speed of the system’s vehicle is the point of comparison that would result to proper notification of Green LED, Red Led or Red LED + buzzer. The On-board Diagnostic 2 terminal of newer vehicles enables input of speed to the system. And overall, the processes happen in an embedded system (Blackfin ADSP 537) that allows stand-alone operation, thus creating a system that works while on the road<br>
+				Correspondence:<br>
+				Engr. Leonard U. Ambata<br>
+				leonard.ambata@dlsu.edu.ph</p>
+			</div>
+			
+			<!-- Thesis 2011 -->
+			<div class="tab-pane fade" id="tab48" role="tabpanel" aria-labelledby="tab48-tab">
+				<br><h4 id="faculty48">Low-cost Infrared Tracking System for Multimedia Use and Applications (2011)</h4>
+				<p id="content48">Identifier: CSG-02-1011-C2<br>
+				Members: de Borja, Michael Andrew C., Estrada, Jethro Reuel A., Hasegawa, Takaaki C., Ong, Lance Gabriel P. and Tiangco, Andrew Charles I.<br>
+				Abstract:<br>
+				School is the place to learn new and fundamental things, where one discovers and further enhances ones abilities. Through time, teaching methods have become more efficient and convenient – from the old blackboard and chalk; teachers now have the help of computers and projectors. In today’s fast paced world, things are not permitted to stay old and technology must continuously progress and adapt to keep up. Things are innovated in time to further make life easier and computers serve that purpose. Teachers nowadays are inclined to the usage of computers and projectors. Keeping that in mind, the group had the idea of further enhancing the efficiency and utility of the said devices. The system that was theorized would have three parts which include an infrared pen, a camera system which is connected to a protoboard, and the software that would be responsible for the inputs and outputs of the system. The use of the infrared pen is like that of the mouse of a computer and basically consists of infrared light-emitting diodes and a switch. The pen would provide the left click function of the mouse and by clicking it one would be able to drag, drop and select things which are projected by the projector. While as the camera system is responsible for retrieving the position of the infrared light emitted by the infrared light-emitting diode. The data collected by the camera would be sent to the protoboard which would then be connected to the computer via USB. The two said devices would need a voltage converter to ensure that they can communicate with each other via signals, thus a voltage converter would be added to the whole module. With all devices set and data signals received by the computer, the software would then compute necessary parameters and deliver the corresponding output.<br>
+				Correspondence:</p>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

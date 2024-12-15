@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+	.external-content { width: 100%; }
+  </style>
+</head>
+<body>
+<br>
+
+<div class="container">
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1">ORGANIZATION CHART</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse" height="100%">
+		<div class="external-content">
+			<iframe src="9_card_container_1.htm" height="280px" width="100%"></iframe>
+		</div>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse2">FACULTY AND STAFF</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse" height="100%">
+		<p style="text-indent:10px; margin-top:10px;">SEARCH: (a) Keyword: <INPUT NAME = "name" id="txt-search" TYPE = "text">
+		(b) Sort: 
+		<select id="sort" name="sort">
+		  <option value="normal">Normal</option>
+		  <option value="reverse">Reverse</option>
+		</select>
+		<input type="button" value="Search" onclick="sendTextToIframe()">
+		</p>
+		<div class="external-content">
+			<iframe id="frame-container" src="9_card_container_2.htm" height="280px" width="100%"></iframe>
+			<script>
+				// Function to send a text value to the iframe
+				function sendTextToIframe() {
+				  var iframe = document.getElementById("frame-container");
+				  var sort = document.getElementById("sort").value.substring(0,1);
+				  var textSearch = document.getElementById("txt-search").value;
+				  var textToSend = sort + textSearch;
+				  iframe.contentWindow.postMessage(textToSend, "*");
+				}
+				// Call the function to send the text when needed
+				sendTextToIframe();
+			</script>
+		</div>
+	  </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
